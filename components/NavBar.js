@@ -6,7 +6,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 // example
 
-let Header = ({...rest}) => {
+let NavBar = ({...rest}) => {
   let {onTabPress, renderIcon, getLabelText, navigation} = rest;
   let {state} = navigation;
   return (
@@ -102,4 +102,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Header;
+export default NavBar;

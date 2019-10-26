@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, StyleSheet, Image} from 'react-native';
+import {Text, View, StyleSheet, Image, ScrollView} from 'react-native';
 import strings from '../../localization/strings';
 import RoundedInput from '../../components/RoundedInput';
 import RoundedButton from '../../components/RoundedButton';
@@ -11,37 +11,45 @@ let Login = ({navigation}) => {
   const {navigate} = navigation;
   return (
     <React.Fragment>
-      <View style={styles.container}>
-        <View style={styles.top}>
-          <Image
-            source={loginImage}
-            style={{
-              resizeMode: 'contain',
-            }}
-          />
-          <Text
-            style={[
-              styles.title,
-              {
-                color: colors.green,
-              },
-            ]}>
-            {strings.login}
-          </Text>
+      <ScrollView>
+        <View
+          style={[
+            styles.container,
+            {
+              backgroundColor: 'white',
+            },
+          ]}>
+          <View style={styles.top}>
+            <Image
+              source={loginImage}
+              style={{
+                resizeMode: 'contain',
+              }}
+            />
+            <Text
+              style={[
+                styles.title,
+                {
+                  color: colors.green,
+                },
+              ]}>
+              {strings.login}
+            </Text>
+          </View>
+          <View>
+            <RoundedInput title={strings.username} />
+            <RoundedInput title={strings.password} isPassword />
+          </View>
+          <View style={styles.bottom}>
+            <RoundedButton
+              text={strings.singIn}
+              onPress={() => {
+                navigate('Main', {});
+              }}
+            />
+          </View>
         </View>
-        <View style={styles.middle}>
-          <RoundedInput title={strings.username} />
-          <RoundedInput title={strings.password} isPassword />
-        </View>
-        <View style={styles.bottom}>
-          <RoundedButton
-            text={strings.singIn}
-            onPress={() => {
-              navigate('Main', {});
-            }}
-          />
-        </View>
-      </View>
+      </ScrollView>
     </React.Fragment>
   );
 };
@@ -64,7 +72,6 @@ const styles = StyleSheet.create({
   },
   middle: {
     flex: 1,
-    marginHorizontal: 10,
   },
   bottom: {
     flex: 1,

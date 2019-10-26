@@ -10,7 +10,7 @@ import Main from '../screens/Main';
 import Category from '../screens/Category';
 import History from '../screens/History';
 import Favorite from '../screens/Favorite';
-import Header from '../components/Header';
+import NavBar from '../components/NavBar';
 
 const topTabNavigator = createMaterialTopTabNavigator(
   {
@@ -52,7 +52,7 @@ const topTabNavigator = createMaterialTopTabNavigator(
     },
   },
   {
-    tabBarComponent: props => <Header {...props} />,
+    tabBarComponent: props => <NavBar {...props} />,
   },
 );
 
