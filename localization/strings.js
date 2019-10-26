@@ -10,6 +10,7 @@ export default new LocalizedStrings({
     singIn: 'Kirish',
     username: 'Login',
     password: 'Parol',
+    searchProduct: 'Mahsulot qidirish',
   },
   ru: {
     main: 'Главный',
@@ -20,6 +21,7 @@ export default new LocalizedStrings({
     singIn: 'Войти',
     username: 'Имя пользователя',
     password: 'Пароль',
+    searchProduct: 'Поиск продукта',
   },
   angliskiy: {
     main: 'Main',
@@ -30,5 +32,6 @@ export default new LocalizedStrings({
     singIn: 'Sign in',
     username: 'username',
     password: 'Password',
+    searchProduct: 'Search Product',
   },
 });
