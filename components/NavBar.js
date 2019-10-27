@@ -24,7 +24,13 @@ let NavBar = ({...rest}) => {
           <Touchable {...{key}} onPress={() => onTabPress(scene)}>
             <View {...{key}} style={styles.bar}>
               <Text
-                style={[styles.title, {color: colors.white, marginRight: 10}]}>
+                style={[
+                  styles.title,
+                  {
+                    color: colors.white,
+                    marginRight: 10,
+                  },
+                ]}>
                 {renderIcon(scene)}
               </Text>
               <Text

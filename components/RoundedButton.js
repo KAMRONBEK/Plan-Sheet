@@ -25,7 +25,7 @@ const RoundedButton = ({text, onPress}) => {
         </Text>
         <MaterialIcons
           name="local-shipping"
-          size={40}
+          size={30}
           color={colors.darkGray}
           style={{
             marginLeft: 20,
@@ -40,10 +40,12 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    borderRadius: 30,
+    borderRadius: 20,
     marginTop: 60,
-    paddingVertical: 20,
-    paddingHorizontal: 40,
+    minWidth: 200,
+    justifyContent: 'center',
+    paddingVertical: 15,
+    paddingHorizontal: 15,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -53,7 +55,7 @@ const styles = StyleSheet.create({
     shadowRadius: 2.62,
     elevation: 4,
   },
-  text: {fontSize: 30, fontWeight: 'bold'},
+  text: {fontSize: 25, fontWeight: '400'},
 });
 
 export default RoundedButton;

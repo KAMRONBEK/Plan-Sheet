@@ -57,14 +57,14 @@ const topTabNavigator = createMaterialTopTabNavigator(
 );
 
 const AppNavigator = createSwitchNavigator({
-  Login: {
-    screen: Login,
-  },
   Tabs: {
     screen: topTabNavigator,
     navigationOptions: {
       header: null,
     },
+  },
+  Login: {
+    screen: Login,
   },
 });
 
