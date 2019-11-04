@@ -15,37 +15,38 @@ const ProductCard = ({item}) => {
                     borderColor: colors.borderGray,
                 },
             ]}>
-            <View
-                style={[
-                    styles.image,
-                    {
-                        borderColor: colors.borderGray,
-                    },
-                ]}>
-                <Image
-                    source={{
-                        uri: item.image,
-                    }}
-                    style={{
-                        flex: 1,
-                        resizeMode: 'cover',
-                    }}
-                />
-            </View>
             <View style={styles.content}>
+                <View
+                    style={[
+                        styles.image,
+                        {
+                            borderColor: colors.borderGray,
+                        },
+                    ]}>
+                    <Image
+                        source={{
+                            uri: item.image,
+                        }}
+                        style={{
+                            flex: 1,
+                            resizeMode: 'cover',
+                        }}
+                    />
+                </View>
+
                 <Text
                     numberOfLines={2}
                     ellipsizeMode='tail'
                     style={[
                         styles.title,
                         {
-                            color: colors.green,
+                            color: colors.darkGray,
                         },
                     ]}>
                     {item.name}
                 </Text>
                 <Text style={styles.price}>
-                    {item.price}
+                    {item.price} {strings.priceUnit}
                 </Text>
                 <CircleButton/>
             </View>
@@ -103,18 +104,18 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         // borderWidth: 1,
-        borderBottomWidth:1,
-        paddingBottom:15,
-        marginVertical: 15,
-        borderRadius: 20,
+        borderBottomWidth: 0.6,
+        paddingVertical: 10,
+        // marginVertical: 10,
+        borderRadius: 15,
         flexDirection: 'row',
     },
     image: {
         overflow: 'hidden',
-        height: 100,
-        width: 100,
+        height: 80,
+        width: 80,
         borderWidth: 1,
-        borderRadius: 20,
+        borderRadius: 15,
         // marginTop: 15,
         // marginBottom: -15,
         // marginLeft: 15,
@@ -123,13 +124,18 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-around',
-        padding: 10,
+        // justifyContent: 'space-between',
+        paddingHorizontal: 10,
     },
     title: {
         fontSize: 20,
-        width: 100
+        flex:1,
+        textAlign:'center'
+        // width: 100,
     },
+    price:{
+        marginRight: 40,
+    }
     // description: {
     //     width: 170,
     //     height: 80,

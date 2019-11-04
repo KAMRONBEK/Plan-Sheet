@@ -25,7 +25,7 @@ const CircleButton = ({onPress, disabled, checked}) => {
                 <MaterialIcons
                     name={checked ? 'check' : 'local-shipping'}
                     size={30}
-                    color={colors.darkGray}
+                    color={colors.green}
                 />
             </View>
         </Touchable>

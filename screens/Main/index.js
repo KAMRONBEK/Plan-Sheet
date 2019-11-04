@@ -8,8 +8,8 @@ let Main = () => {
     {
       id: 1,
       image:
-        'https://www.gaelscoilriada.com/wp-content/uploads/2019/09/Bainne.jpg',
-      name: "Yovvoyi yong'oq juda ajoyib ta'mli",
+        'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/MU9M2_AV2?wid=1144&hei=1144&fmt=jpeg&qlt=80&op_usm=0.5,0.5&.v=1566855245932',
+      name: "Yovvoyi yongz'mli",
       remaining: 55,
       minimumOrder: 5,
       price: 17000,
@@ -22,7 +22,7 @@ let Main = () => {
       id: 2,
       image:
         'https://www.gaelscoilriada.com/wp-content/uploads/2019/09/Bainne.jpg',
-      name: "Yovvoyi yong'oq juda ajoyib ta'mli",
+      name: "Yovvoyi yoz'mli",
       remaining: 55,
       minimumOrder: 5,
       price: 17000,
@@ -34,8 +34,8 @@ let Main = () => {
     {
       id: 3,
       image:
-        'https://www.gaelscoilriada.com/wp-content/uploads/2019/09/Bainne.jpg',
-      name: "Yovvoyi yong'oq juda ajoyib ta'mli",
+        'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/MU9M2_AV2?wid=1144&hei=1144&fmt=jpeg&qlt=80&op_usm=0.5,0.5&.v=1566855245932',
+      name: "Yovvoyi yoz'mli",
       remaining: 55,
       minimumOrder: 5,
       price: 17000,
@@ -47,8 +47,8 @@ let Main = () => {
     {
       id: 4,
       image:
-        'https://www.gaelscoilriada.com/wp-content/uploads/2019/09/Bainne.jpg',
-      name: "Yovvoyi yong'oq juda ajoyib ta'mli",
+        'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MX0F2?wid=1144&hei=1144&fmt=jpeg&qlt=80&op_usm=0.5,0.5&.v=1566857013200',
+      name: "Yovvoyi yongzmli",
       remaining: 55,
       minimumOrder: 5,
       price: 17000,
@@ -61,7 +61,7 @@ let Main = () => {
       id: 5,
       image:
         'https://www.gaelscoilriada.com/wp-content/uploads/2019/09/Bainne.jpg',
-      name: "Yovvoyi yong'oq juda ajoyib ta'mli",
+      name: "Yovvoyi yonzmli",
       remaining: 55,
       minimumOrder: 5,
       price: 17000,
@@ -73,8 +73,8 @@ let Main = () => {
     {
       id: 6,
       image:
-        'https://www.gaelscoilriada.com/wp-content/uploads/2019/09/Bainne.jpg',
-      name: "Yovvoyi yong'oq juda ajoyib ta'mli",
+        'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/MU9M2_AV2?wid=1144&hei=1144&fmt=jpeg&qlt=80&op_usm=0.5,0.5&.v=1566855245932',
+      name: "Yovvoyi yozyib ta'mli",
       remaining: 55,
       minimumOrder: 5,
       price: 17000,
@@ -87,7 +87,7 @@ let Main = () => {
       id: 7,
       image:
         'https://www.gaelscoilriada.com/wp-content/uploads/2019/09/Bainne.jpg',
-      name: "Yovvoyi yong'oq juda ajoyib ta'mli",
+      name: "Yovvoyi yong'oq z",
       remaining: 55,
       minimumOrder: 5,
       price: 17000,
@@ -100,8 +100,8 @@ let Main = () => {
     {
       id: 8,
       image:
-        'https://www.gaelscoilriada.com/wp-content/uploads/2019/09/Bainne.jpg',
-      name: "Yovvoyi yong'oq juda ajoyib ta'mli",
+        'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MX0F2?wid=1144&hei=1144&fmt=jpeg&qlt=80&op_usm=0.5,0.5&.v=1566857013200',
+      name: "Yovvoyi yong'oq z",
       remaining: 55,
       minimumOrder: 5,
       price: 17000,
