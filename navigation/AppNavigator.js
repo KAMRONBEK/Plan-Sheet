@@ -13,59 +13,61 @@ import Favorite from '../screens/Favorite';
 import NavBar from '../components/NavBar';
 
 const topTabNavigator = createMaterialTopTabNavigator(
-  {
-    Main: {
-      screen: Main,
-      navigationOptions: {
-        tabBarIcon: () => {
-          return <MaterialIcons name="home" size={17} />;
+    {
+        Main: {
+            screen: Main,
+            navigationOptions: {
+                tabBarIcon: () => {
+                    return <MaterialIcons name="home" size={17}/>;
+                },
+                tabBarLabel: strings.main,
+            },
         },
-        tabBarLabel: strings.main,
-      },
-    },
-    Category: {
-      screen: Category,
-      navigationOptions: {
-        tabBarIcon: () => {
-          return <MaterialIcons name="format-list-bulleted" size={17} />;
+        Category: {
+            screen: Category,
+            navigationOptions: {
+                tabBarIcon: () => {
+                    return <MaterialIcons name="format-list-bulleted" size={17}/>;
+                },
+                tabBarLabel: strings.category,
+            },
         },
-        tabBarLabel: strings.category,
-      },
-    },
-    History: {
-      screen: History,
-      navigationOptions: {
-        tabBarIcon: () => {
-          return <MaterialIcons name="history" size={17} />;
+        History: {
+            screen: History,
+            navigationOptions: {
+                tabBarIcon: () => {
+                    return <MaterialIcons name="history" size={17}/>;
+                },
+                tabBarLabel: strings.history,
+            },
         },
-        tabBarLabel: strings.history,
-      },
-    },
-    Favorite: {
-      screen: Favorite,
-      navigationOptions: {
-        tabBarIcon: () => {
-          return <MaterialIcons name="favorite" size={17} />;
+        Favorite: {
+            screen: Favorite,
+            navigationOptions: {
+                tabBarIcon: () => {
+                    return <MaterialIcons name="favorite" size={17}/>;
+                },
+                tabBarLabel: strings.favorite,
+            },
         },
-        tabBarLabel: strings.favorite,
-      },
     },
-  },
-  {
-    tabBarComponent: props => <NavBar {...props} />,
-  },
+    {
+        tabBarComponent: props => <NavBar {...props} />,
+        initialRouteName: 'History',
+    },
 );
 
 const AppNavigator = createSwitchNavigator({
-  Tabs: {
-    screen: topTabNavigator,
-    navigationOptions: {
-      header: null,
+
+    Tabs: {
+        screen: topTabNavigator,
+        navigationOptions: {
+            header: null,
+        },
     },
-  },
-  Login: {
-    screen: Login,
-  },
+    Login: {
+        screen: Login,
+    },
 });
 
 const AppContainer = createAppContainer(AppNavigator);

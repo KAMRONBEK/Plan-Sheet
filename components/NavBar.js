@@ -50,7 +50,7 @@ let NavBar = ({...rest}) => {
         style={[
           styles.bonus,
           {
-            backgroundColor: colors.paleyellow,
+            backgroundColor: colors.paleYellow,
           },
         ]}>
         <FontAwesome5 name="coins" size={15} color={colors.yellow} />
