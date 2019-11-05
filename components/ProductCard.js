@@ -9,20 +9,10 @@ import CircleButton from './CircleButton';
 const ProductCard = ({item}) => {
     return (
         <View
-            style={[
-                styles.container,
-                {
-                    borderColor: colors.borderGray,
-                },
-            ]}>
+            style={styles.container}>
             <View style={styles.content}>
                 <View
-                    style={[
-                        styles.image,
-                        {
-                            borderColor: colors.borderGray,
-                        },
-                    ]}>
+                    style={styles.image}>
                     <Image
                         source={{
                             uri: item.image,
@@ -37,12 +27,7 @@ const ProductCard = ({item}) => {
                 <Text
                     numberOfLines={2}
                     ellipsizeMode='tail'
-                    style={[
-                        styles.title,
-                        {
-                            color: colors.darkGray,
-                        },
-                    ]}>
+                    style={styles.title}>
                     {item.name}
                 </Text>
                 <Text style={styles.price}>
@@ -105,6 +90,7 @@ const styles = StyleSheet.create({
         flex: 1,
         // borderWidth: 1,
         borderBottomWidth: 0.6,
+        borderColor: colors.borderGray,
         paddingVertical: 10,
         // marginVertical: 10,
         borderRadius: 15,
@@ -116,6 +102,7 @@ const styles = StyleSheet.create({
         width: 80,
         borderWidth: 1,
         borderRadius: 15,
+        borderColor: colors.borderGray,
         // marginTop: 15,
         // marginBottom: -15,
         // marginLeft: 15,
@@ -129,13 +116,14 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 20,
-        flex:1,
-        textAlign:'center'
+        flex: 1,
+        textAlign: 'center',
+        color: colors.darkGray,
         // width: 100,
     },
-    price:{
+    price: {
         marginRight: 40,
-    }
+    },
     // description: {
     //     width: 170,
     //     height: 80,
