@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     },
     bar: {
         flexDirection: 'row',
-        paddingVertical: 40,
+        // paddingVertical: 40,
         paddingHorizontal: 10,
         justifyContent: 'center',
         alignItems: 'center',

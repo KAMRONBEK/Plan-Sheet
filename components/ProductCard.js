@@ -5,6 +5,7 @@ import strings from '../localization/strings';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import RoundedButton from './RoundedButton';
 import CircleButton from './CircleButton';
+import FilledButton from './FilledButton';
 
 const ProductCard = ({item}) => {
     return (
@@ -23,17 +24,20 @@ const ProductCard = ({item}) => {
                         }}
                     />
                 </View>
+                <View style={styles.textWrap}>
+                    <Text
+                        numberOfLines={2}
+                        ellipsizeMode='tail'
+                        style={styles.title}>
+                        {item.name}
+                    </Text>
+                    <Text style={styles.price}>
+                        {item.price} {strings.priceUnit}
+                    </Text>
+                    {/*<CircleButton/>*/}
+                    <FilledButton text={strings.ordering}/>
+                </View>
 
-                <Text
-                    numberOfLines={2}
-                    ellipsizeMode='tail'
-                    style={styles.title}>
-                    {item.name}
-                </Text>
-                <Text style={styles.price}>
-                    {item.price} {strings.priceUnit}
-                </Text>
-                <CircleButton/>
             </View>
             {/*<View style={styles.middle}>*/}
             {/*    <View style={styles.doubleText}>*/}
@@ -89,8 +93,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         // borderWidth: 1,
-        borderBottomWidth: 0.6,
-        borderColor: colors.borderGray,
         paddingVertical: 10,
         // marginVertical: 10,
         borderRadius: 15,
@@ -98,14 +100,26 @@ const styles = StyleSheet.create({
     },
     image: {
         overflow: 'hidden',
-        height: 80,
-        width: 80,
-        borderWidth: 1,
-        borderRadius: 15,
+        height: 85,
+        width: 85,
+        borderWidth: 0.5,
+        // borderRadius: 15,
         borderColor: colors.borderGray,
         // marginTop: 15,
         // marginBottom: -15,
         // marginLeft: 15,
+    },
+    textWrap: {
+        borderBottomWidth: 0.6,
+        borderColor: colors.borderGray,
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginHorizontal:10,
+        // paddingBottom:,
+        // justifyContent: 'space-between',
+        paddingHorizontal: 10,
+        height: 82,
     },
     content: {
         flex: 1,
@@ -113,6 +127,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         // justifyContent: 'space-between',
         paddingHorizontal: 10,
+        justifyContent:"center"
     },
     title: {
         fontSize: 20,
