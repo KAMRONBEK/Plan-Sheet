@@ -10,7 +10,11 @@ import Main from '../screens/Main';
 import Category from '../screens/Category';
 import History from '../screens/History';
 import Favorite from '../screens/Favorite';
+
 import NavBar from '../components/NavBar';
+import DrawerMenuItem from '../components/DrawerContent';
+import {createDrawerNavigator} from 'react-navigation-drawer';
+import DrawerContent from '../components/DrawerContent';
 
 const topTabNavigator = createMaterialTopTabNavigator(
     {
@@ -57,8 +61,19 @@ const topTabNavigator = createMaterialTopTabNavigator(
     },
 );
 
+// example route
+const Example = createStackNavigator({
+    Example: {
+        screen: DrawerMenuItem,
+        navigationOptions: {
+            header: null,
+        },
+    },
+});
+
 const AppNavigator = createSwitchNavigator({
 
+    // Example: Example,
     Tabs: {
         screen: topTabNavigator,
         navigationOptions: {
@@ -70,6 +85,29 @@ const AppNavigator = createSwitchNavigator({
     },
 });
 
-const AppContainer = createAppContainer(AppNavigator);
+const DrawerNavigator = createDrawerNavigator(
+    {
+        all: createStackNavigator(
+            {
+                AppNavigator,
+            },
+            {
+                headerMode: 'none',
+                mode: 'modal',
+                transparentCard: true,
+                cardStyle: {
+                    backgroundColor: 'transparent',
+                    opacity: 1,
+                },
+            },
+        ),
+    },
+    {
+        drawerWidth: 350,
+        contentComponent: DrawerContent,
+    },
+);
+
+const AppContainer = createAppContainer(DrawerNavigator);
 
 export default AppContainer;

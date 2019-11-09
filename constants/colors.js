@@ -1,6 +1,7 @@
 export default {
     white: '#ffffff',
     green: '#50CC69',
+    // transparentGreen:"rgba(80, 204, 105, )",
     paleYellow: 'rgba(255,255,0,0.6)',
     yellow: 'rgba(255,255,0,1)',
     paleGray: '#B4B4B4',
