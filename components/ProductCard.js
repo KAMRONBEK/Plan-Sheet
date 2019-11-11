@@ -32,6 +32,9 @@ const ProductCard = ({item}) => {
                         {item.name}
                     </Text>
                     <Text style={styles.price}>
+                        {item.minimumOrder} {strings.piece}
+                    </Text>
+                    <Text style={styles.price}>
                         {item.price} {strings.priceUnit}
                     </Text>
                     {/*<CircleButton/>*/}
@@ -115,7 +118,7 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
-        marginHorizontal:10,
+        marginHorizontal: 10,
         // paddingBottom:,
         // justifyContent: 'space-between',
         paddingHorizontal: 10,
@@ -127,17 +130,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         // justifyContent: 'space-between',
         paddingHorizontal: 10,
-        justifyContent:"center"
+        justifyContent: 'center',
     },
     title: {
         fontSize: 20,
         flex: 1,
         textAlign: 'center',
+        // marginHorizontal:15,
         color: colors.darkGray,
         // width: 100,
     },
     price: {
-        marginRight: 40,
+        marginRight: 20,
     },
     // description: {
     //     width: 170,

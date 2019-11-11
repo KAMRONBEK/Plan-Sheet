@@ -4,7 +4,9 @@ import DrawerMenuItem from '../components/DrawerMenuItem';
 import colors from '../constants/colors';
 import strings from '../localization/strings';
 
-let DrawerContent = () => {
+let DrawerContent = ({navigation}) => {
+    const {navigate} = navigation;
+
     return (
         <View style={styles.container}>
             <View style={styles.logoWrapper}>
@@ -46,42 +48,29 @@ let DrawerContent = () => {
             <DrawerMenuItem
                 text={strings.user}
                 iconName="user"
-                // onPress={() => {
-                //     // NavigationServices.toggleDrawer();
-                //     // NavigationServices.navigate('Shop');
-                // }}
+                // onPress={()=>navigate('Profile',{})}
             />
             <DrawerMenuItem
                 text={strings.category}
-                iconName="user"
-                // onPress={() => {
-                //     // NavigationServices.toggleDrawer();
-                //     // NavigationServices.navigate('Shop');
-                // }}
+                iconName="list"
+                onPress={()=>navigate('Category',{})}
             />
             <DrawerMenuItem
                 text={strings.history}
-                iconName="user"
-                // onPress={() => {
-                //     // NavigationServices.toggleDrawer();
-                //     // NavigationServices.navigate('Shop');
-                // }}
+                iconName="clock"
+                onPress={()=>navigate('History',{})}
+
             />
             <DrawerMenuItem
                 text={strings.favorite}
-                iconName="user"
-                // onPress={() => {
-                //     // NavigationServices.toggleDrawer();
-                //     // NavigationServices.navigate('Shop');
-                // }}
+                iconName="heart"
+                onPress={()=>navigate('Favorite',{})}
+
             />
             <DrawerMenuItem
                 text={strings.orderStatus}
-                iconName="user"
-                // onPress={() => {
-                //     // NavigationServices.toggleDrawer();
-                //     // NavigationServices.navigate('Shop');
-                // }}
+                iconName="truck"
+                onPress={()=>navigate('Orders',{})}
             />
 
 

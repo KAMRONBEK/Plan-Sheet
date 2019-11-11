@@ -2,12 +2,13 @@ import React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import colors from '../constants/colors';
+import Touchable from './Touchable';
 
-const DrawerMenuItem = ({iconName, text}) => {
+const DrawerMenuItem = ({iconName, text,onPress}) => {
     // const { navigate } = navigation;
     return (
-        <React.Fragment>
-            <View style={styles.container}>
+        <Touchable onPress={onPress}>
+            <View style={styles.container} >
                 <Feather
                     name={iconName}
                     size={30}
@@ -21,13 +22,13 @@ const DrawerMenuItem = ({iconName, text}) => {
                     </Text>
                 </View>
             </View>
-        </React.Fragment>
+        </Touchable>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        marginVertical: 14,
+        paddingVertical: 14,
         flexDirection: 'row',
         justifyContent: 'center',
     },

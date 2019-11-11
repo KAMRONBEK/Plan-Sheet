@@ -1,10 +1,13 @@
 import React from 'react';
 import {View, Text} from 'react-native';
+import Header from '../../components/Header';
 
-const Favorite = () => {
+const Favorite = ({navigation}) => {
   return (
     <View>
-      <Text>Favorite</Text>
+        <Header navigation={navigation}/>
+
+        <Text>Favorite</Text>
     </View>
   );
 };

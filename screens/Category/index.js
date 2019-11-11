@@ -1,10 +1,12 @@
 import React from 'react';
 import {View, Text} from 'react-native';
+import Header from '../../components/Header';
 
-const Category = () => {
+const Category = ({navigation}) => {
   return (
     <View>
-      <Text>Category</Text>
+        <Header navigation={navigation}/>
+        <Text>Category</Text>
     </View>
   );
 };

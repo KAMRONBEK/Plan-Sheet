@@ -16,6 +16,51 @@ import DrawerMenuItem from '../components/DrawerContent';
 import {createDrawerNavigator} from 'react-navigation-drawer';
 import DrawerContent from '../components/DrawerContent';
 
+// const navigatorStack = createStackNavigator(
+//     {
+//         Main: {
+//             screen: Main,
+//             navigationOptions: {
+//                 tabBarIcon: () => {
+//                     return <MaterialIcons name="home" size={17}/>;
+//                 },
+//                 tabBarLabel: strings.main,
+//             },
+//         },
+//         Category: {
+//             screen: Category,
+//             navigationOptions: {
+//                 tabBarIcon: () => {
+//                     return <MaterialIcons name="format-list-bulleted" size={17}/>;
+//                 },
+//                 tabBarLabel: strings.category,
+//             },
+//         },
+//         History: {
+//             screen: History,
+//             navigationOptions: {
+//                 tabBarIcon: () => {
+//                     return <MaterialIcons name="history" size={17}/>;
+//                 },
+//                 tabBarLabel: strings.history,
+//             },
+//         },
+//         Favorite: {
+//             screen: Favorite,
+//             navigationOptions: {
+//                 tabBarIcon: () => {
+//                     return <MaterialIcons name="favorite" size={17}/>;
+//                 },
+//                 tabBarLabel: strings.favorite,
+//             },
+//         },
+//     }, {
+//         navigationOptions:{
+//             header:null
+//         }
+//     },
+// );
+
 const topTabNavigator = createMaterialTopTabNavigator(
     {
         Main: {
@@ -56,8 +101,14 @@ const topTabNavigator = createMaterialTopTabNavigator(
         },
     },
     {
-        tabBarComponent: props => <NavBar {...props} />,
-        initialRouteName: 'History',
+        // tabBarComponent: props => <NavBar {...props} />,
+        // initialRouteName: 'History',
+        tabBarOptions:{
+            showLabel:false,
+            style:{
+                display:'none'
+            }
+        }
     },
 );
 

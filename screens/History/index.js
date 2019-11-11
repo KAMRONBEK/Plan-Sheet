@@ -3,7 +3,7 @@ import {View, Text, FlatList, StyleSheet} from 'react-native';
 import ProductCardHistory from '../../components/ProductCardHistory';
 import Header from '../../components/Header';
 
-const History = () => {
+const History = ({navigation}) => {
     const ProductList = [
         {
             id: 1,
@@ -158,7 +158,7 @@ const History = () => {
     ];
     return (
         <View style={styles.container}>
-            <Header/>
+            <Header navigation={navigation}/>
             <View style={styles.listWrapper}>
                 <FlatList
                     keyExtractor={item => item.id.toString()}
