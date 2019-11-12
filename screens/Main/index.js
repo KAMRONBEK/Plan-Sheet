@@ -120,7 +120,7 @@ let Main = ({navigation}) => {
                     <FlatList
                         keyExtractor={item => item.id.toString()}
                         data={ProductList}
-                        renderItem={({item}) => <ProductCard item={item}/>}
+                        renderItem={({item}) => <ProductCard item={item} navigation={navigation}/>}
                     />
                 </View>
             </View>

@@ -15,6 +15,7 @@ import NavBar from '../components/NavBar';
 import DrawerMenuItem from '../components/DrawerContent';
 import {createDrawerNavigator} from 'react-navigation-drawer';
 import DrawerContent from '../components/DrawerContent';
+import Product from '../screens/Product';
 
 // const navigatorStack = createStackNavigator(
 //     {
@@ -61,10 +62,22 @@ import DrawerContent from '../components/DrawerContent';
 //     },
 // );
 
+const MainStack = createStackNavigator({
+    Main: {
+        screen: Main,
+        navigationOptions: {header: null},
+
+    },
+    Product: {
+        screen: Product,
+        navigationOptions: {header: null},
+    },
+}, {});
+
 const topTabNavigator = createMaterialTopTabNavigator(
     {
         Main: {
-            screen: Main,
+            screen: MainStack,
             navigationOptions: {
                 tabBarIcon: () => {
                     return <MaterialIcons name="home" size={17}/>;
@@ -103,12 +116,12 @@ const topTabNavigator = createMaterialTopTabNavigator(
     {
         // tabBarComponent: props => <NavBar {...props} />,
         // initialRouteName: 'History',
-        tabBarOptions:{
-            showLabel:false,
-            style:{
-                display:'none'
-            }
-        }
+        tabBarOptions: {
+            showLabel: false,
+            style: {
+                display: 'none',
+            },
+        },
     },
 );
 

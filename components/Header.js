@@ -6,7 +6,6 @@ import colors from '../constants/colors';
 import Touchable from './Touchable';
 
 const Header = ({navigation}) => {
-    console.warn(navigation);
     let {toggleDrawer}=navigation;
     return (
         <View style={styles.container}>
