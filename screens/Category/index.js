@@ -5,7 +5,6 @@ import Header from '../../components/Header';
 const Category = ({navigation}) => {
   return (
     <View>
-        <Header navigation={navigation}/>
         <Text>Category</Text>
     </View>
   );

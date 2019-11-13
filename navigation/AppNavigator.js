@@ -16,6 +16,7 @@ import DrawerMenuItem from '../components/DrawerContent';
 import {createDrawerNavigator} from 'react-navigation-drawer';
 import DrawerContent from '../components/DrawerContent';
 import Product from '../screens/Product';
+import Header from '../components/Header';
 
 // const navigatorStack = createStackNavigator(
 //     {
@@ -114,14 +115,9 @@ const topTabNavigator = createMaterialTopTabNavigator(
         },
     },
     {
-        // tabBarComponent: props => <NavBar {...props} />,
+        tabBarComponent: props => <Header {...props} />,
         // initialRouteName: 'History',
-        tabBarOptions: {
-            showLabel: false,
-            style: {
-                display: 'none',
-            },
-        },
+        swipeEnabled: false,
     },
 );
 
@@ -141,7 +137,7 @@ const AppNavigator = createSwitchNavigator({
     Tabs: {
         screen: topTabNavigator,
         navigationOptions: {
-            header: null,
+            header: () => <Header/>,
         },
     },
     Login: {

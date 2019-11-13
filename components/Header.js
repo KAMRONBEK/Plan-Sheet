@@ -6,14 +6,18 @@ import colors from '../constants/colors';
 import Touchable from './Touchable';
 
 const Header = ({navigation}) => {
-    let {toggleDrawer}=navigation;
+    let {toggleDrawer} = navigation;
     return (
         <View style={styles.container}>
-            <Touchable onPress={()=>{toggleDrawer()}}>
-                <MaterialIcons name='menu' size={55}
-                               style={{
-                                   color: colors.white,
-                               }}/>
+            <Touchable onPress={() => {
+                toggleDrawer();
+            }}>
+                <View>
+                    <MaterialIcons name='menu' size={55}
+                                   style={{
+                                       color: colors.white,
+                                   }}/>
+                </View>
             </Touchable>
             <SearchBar/>
             <MaterialIcons

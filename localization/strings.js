@@ -25,6 +25,11 @@ export default new LocalizedStrings({
         deliveryDate: 'Yetkazilgan vaqti',
         accept: 'Tasdiqlash',
         user: 'Foydalanuvchi',
+        delivery: 'Yetkazib berish',
+        hours: 'soat',
+        payment: 'To`lov',
+        paymentOnDelivery: 'Borganda tulash',
+        manufacturerName:'Firma nomi'
     },
     ru: {
         main: 'Главный',
@@ -50,6 +55,11 @@ export default new LocalizedStrings({
         deliveryDate: '',
         accept: 'Принимать',
         user: 'Пользователь',
+        delivery: 'Доставка',
+        hours: 'часов',
+        payment: 'Оплата',
+        paymentOnDelivery: 'Оплата при доставке',
+        manufacturerName:'Наименование производителя'
     },
     angliskiy: {
         main: 'Main',
@@ -75,5 +85,10 @@ export default new LocalizedStrings({
         deliveryDate: 'Delivery date',
         accept: 'Accept',
         user: 'User',
+        delivery: 'Delivery',
+        hours: 'hours',
+        payment: 'Payment',
+        paymentOnDelivery: 'Payment on delivery',
+        manufacturerName:'Name of manufacturer'
     },
 });

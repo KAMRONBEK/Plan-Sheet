@@ -114,7 +114,6 @@ let Main = ({navigation}) => {
 
     return (
         <React.Fragment>
-            <Header navigation={navigation}/>
             <View style={styles.container}>
                 <View style={styles.listWrapper}>
                     <FlatList

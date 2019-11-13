@@ -158,7 +158,6 @@ const History = ({navigation}) => {
     ];
     return (
         <View style={styles.container}>
-            <Header navigation={navigation}/>
             <View style={styles.listWrapper}>
                 <FlatList
                     keyExtractor={item => item.id.toString()}
