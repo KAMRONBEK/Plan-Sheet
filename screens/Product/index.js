@@ -5,6 +5,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import colors from '../../constants/colors';
 import strings from '../../localization/strings';
 import Touchable from '../../components/Touchable';
+import RoundedButton from '../../components/RoundedButton';
 
 const Product = ({navigation}) => {
     let [item, setItem] = useState({});
@@ -20,7 +21,7 @@ const Product = ({navigation}) => {
                 flexDirection: 'row',
                 justifyContent: 'space-between',
             }}>
-                <Touchable onPress={() => navigation.goBack()} >
+                <Touchable onPress={() => navigation.goBack()}>
                     <View style={{
                         padding: 10,
                         borderRadius: 10,
@@ -35,12 +36,78 @@ const Product = ({navigation}) => {
                     <Image style={{
                         borderRadius: 0,
                         width: 260,
-                        height: 330,
+                        height: 270,
                         resizeMode: 'cover',
                     }}
                            source={{
                                uri: item.image,
                            }}/>
+                    <View style={styles.imageBunch}>
+                        <View style={{
+                            borderWidth: 1,
+                            borderColor:colors.borderGray
+                        }}>
+
+                            <Image
+                                source={{
+                                    uri: 'https://adnstudio.com/wp-content/uploads/2014/03/como-vender-un-producto-de-forma-efectiva-con-tecnicas-de-branding-branding-adnstudio.jpg',
+                                }}
+                                style={{
+                                    height: 55,
+                                    width: 55,
+                                    resizeMode: 'cover',
+                                }}/>
+                        </View>
+
+                        <View style={{
+                            borderWidth: 1,
+                            borderColor:colors.borderGray
+                        }}>
+
+                            <Image
+                                source={{
+                                    uri: 'https://adnstudio.com/wp-content/uploads/2014/03/como-vender-un-producto-de-forma-efectiva-con-tecnicas-de-branding-branding-adnstudio.jpg',
+                                }}
+                                style={{
+                                    height: 55,
+                                    width: 55,
+                                    resizeMode: 'cover',
+                                }}/>
+                        </View>
+
+                        <View style={{
+                            borderWidth: 1,
+                            borderColor:colors.borderGray
+                        }}>
+
+                            <Image
+                                source={{
+                                    uri: 'https://adnstudio.com/wp-content/uploads/2014/03/como-vender-un-producto-de-forma-efectiva-con-tecnicas-de-branding-branding-adnstudio.jpg',
+                                }}
+                                style={{
+                                    height: 55,
+                                    width: 55,
+                                    resizeMode: 'cover',
+                                }}/>
+                        </View>
+
+                        <View style={{
+                            borderWidth: 1,
+                            borderColor:colors.borderGray
+                        }}>
+
+                            <Image
+                                source={{
+                                    uri: 'https://adnstudio.com/wp-content/uploads/2014/03/como-vender-un-producto-de-forma-efectiva-con-tecnicas-de-branding-branding-adnstudio.jpg',
+                                }}
+                                style={{
+                                    height: 55,
+                                    width: 55,
+                                    resizeMode: 'cover',
+                                }}/>
+                        </View>
+
+                    </View>
                 </View>
                 <View style={styles.textContent}>
                     <View style={styles.titleWrapper}>
@@ -64,7 +131,20 @@ const Product = ({navigation}) => {
                         <Text style={styles.manufacturerText}>{strings.manufacturerName}</Text>
                         <Text style={styles.manufacturer}>{item.manufacturer}</Text>
                     </View>
+                    <View style={styles.textArea}>
+                        <Text style={styles.description}>
+                            {item.description}
+                        </Text>
+                        <Text style={styles.showMore}>
+                            {strings.showMore}
+                        </Text>
+                    </View>
                 </View>
+            </View>
+            <View style={{
+                paddingHorizontal: 200,
+            }}>
+                <RoundedButton text={strings.ordering}/>
             </View>
         </View>
     );
@@ -78,12 +158,16 @@ const styles = StyleSheet.create({
     },
     content: {
         flexDirection: 'row',
-        flex: 1,
     },
     imageWrapper: {
         overflow: 'hidden',
         padding: 10,
         borderRadius: 0,
+    },
+    imageBunch: {
+        flexDirection: 'row',
+        paddingVertical: 20,
+        justifyContent: 'space-between',
     },
     textContent: {
         flex: 1,
@@ -158,6 +242,22 @@ const styles = StyleSheet.create({
         color: colors.green,
         paddingBottom: 5,
         fontSize: 13,
+    },
+    textArea: {
+        borderColor: colors.borderGray,
+        borderWidth: 1,
+        padding: 20,
+    },
+    description: {
+        color: colors.textGray,
+        lineHeight: 20,
+    },
+    showMore: {
+        color: colors.green,
+        fontSize: 17,
+        marginTop: 20,
+        textAlign: 'center',
+        fontWeight: 'bold',
     },
 });
 

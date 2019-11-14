@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
         backgroundColor: colors.green,
         paddingVertical: 10,
         paddingHorizontal: 15,
-        borderRadius: 10,
+        borderRadius: 3,
     },
     buttonText: {
         fontSize: 17,

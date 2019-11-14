@@ -9,4 +9,8 @@ export default {
     superPaleGray: '#F5F5F5',
     darkGray: '#606B62',
     textGray: '#949494',
+    categoryOneColor: '#E4E4E4',
+    categoryTwoColor: '#F3F3F3',
+    categoryThreeColor: '#F5F5F5',
+    black: '#636363',
 };

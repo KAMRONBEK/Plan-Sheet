@@ -10,6 +10,7 @@ import Main from '../screens/Main';
 import Category from '../screens/Category';
 import History from '../screens/History';
 import Favorite from '../screens/Favorite';
+import Bonus from '../screens/Bonus';
 
 import NavBar from '../components/NavBar';
 import DrawerMenuItem from '../components/DrawerContent';
@@ -112,6 +113,9 @@ const topTabNavigator = createMaterialTopTabNavigator(
                 },
                 tabBarLabel: strings.favorite,
             },
+        },
+        Bonus: {
+            screen: Bonus,
         },
     },
     {

@@ -29,7 +29,8 @@ export default new LocalizedStrings({
         hours: 'soat',
         payment: 'To`lov',
         paymentOnDelivery: 'Borganda tulash',
-        manufacturerName:'Firma nomi'
+        manufacturerName: 'Firma nomi',
+        showMore: 'Ko`proq ko`rsatish',
     },
     ru: {
         main: 'Главный',
@@ -59,7 +60,8 @@ export default new LocalizedStrings({
         hours: 'часов',
         payment: 'Оплата',
         paymentOnDelivery: 'Оплата при доставке',
-        manufacturerName:'Наименование производителя'
+        manufacturerName: 'Наименование производителя',
+        showMore: 'Показать больше',
     },
     angliskiy: {
         main: 'Main',
@@ -89,6 +91,7 @@ export default new LocalizedStrings({
         hours: 'hours',
         payment: 'Payment',
         paymentOnDelivery: 'Payment on delivery',
-        manufacturerName:'Name of manufacturer'
+        manufacturerName: 'Name of manufacturer',
+        showMore: 'Show more',
     },
 });

@@ -101,7 +101,7 @@ const ProductCard = ({item, navigation}) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginVertical: 10,
+        paddingTop: 20,
         // marginVertical: 10,
         borderRadius: 15,
         flexDirection: 'row',
@@ -127,6 +127,7 @@ const styles = StyleSheet.create({
         // justifyContent: 'space-between',
         paddingHorizontal: 10,
         height: 82,
+        paddingBottom:20
     },
     content: {
         flex: 1,
@@ -137,15 +138,15 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     title: {
-        fontSize: 20,
+        // fontSize: 17,
         flex: 1,
         textAlign: 'center',
         // marginHorizontal:15,
-        color: colors.darkGray,
         // width: 100,
+        marginRight:20
     },
     price: {
-        marginRight: 20,
+        marginRight: 30,
     },
     // description: {
     //     width: 170,
