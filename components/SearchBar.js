@@ -15,8 +15,8 @@ const SearchBar = () => {
             ]}>
             <Feather name="search" size={24} style={{
                 fontWeight: '100',
-                paddingHorizontal:20,
-                paddingVertical:5,
+                paddingHorizontal: 20,
+                paddingVertical: 5,
                 color: colors.textGray,
             }}/>
             <TextInput placeholder={strings.searchProduct} style={styles.input}/>
@@ -26,21 +26,21 @@ const SearchBar = () => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor:colors.white,
+        backgroundColor: colors.white,
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
 
         // paddingHorizontal: 15,
         borderRadius: 7,
-        marginHorizontal:20
+        marginHorizontal: 20,
     },
     input: {
         alignContent: 'center',
         height: 30,
         flex: 1,
         padding: 0,
-        fontSize: 17,
+        fontSize: 15,
         fontWeight: '100',
     },
 });

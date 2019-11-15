@@ -31,6 +31,9 @@ export default new LocalizedStrings({
         paymentOnDelivery: 'Borganda tulash',
         manufacturerName: 'Firma nomi',
         showMore: 'Ko`proq ko`rsatish',
+        exchange: 'Alishtirish',
+        activeOrders:'Faol buyurtmalar',
+        homePage:'Bosh sahifa'
     },
     ru: {
         main: 'Главный',
@@ -62,6 +65,9 @@ export default new LocalizedStrings({
         paymentOnDelivery: 'Оплата при доставке',
         manufacturerName: 'Наименование производителя',
         showMore: 'Показать больше',
+        exchange: 'Обмен',
+        activeOrders:'Активные заказы',
+        homePage:'Главная страница'
     },
     angliskiy: {
         main: 'Main',
@@ -93,5 +99,8 @@ export default new LocalizedStrings({
         paymentOnDelivery: 'Payment on delivery',
         manufacturerName: 'Name of manufacturer',
         showMore: 'Show more',
+        exchange: 'Exchange',
+        activeOrders:'Active orders',
+        homePage:'Home page'
     },
 });

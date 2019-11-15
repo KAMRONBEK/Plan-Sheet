@@ -1,7 +1,7 @@
 export default {
     white: '#ffffff',
     green: '#50CC69',
-    // transparentGreen:"rgba(80, 204, 105, )",
+    transparentGreen:"rgb(255,166,0)",
     paleYellow: 'rgba(255,255,0,0.6)',
     yellow: 'rgba(255,255,0,1)',
     paleGray: '#B4B4B4',
@@ -13,4 +13,6 @@ export default {
     categoryTwoColor: '#F3F3F3',
     categoryThreeColor: '#F5F5F5',
     black: '#636363',
+    red: '#FF4D4D',
+    grayish:'#fef6ff'
 };

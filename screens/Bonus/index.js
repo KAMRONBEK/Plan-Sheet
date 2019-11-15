@@ -70,19 +70,19 @@ const Bonus = ({navigation}) => {
     ];
     return (
         <View style={styles.container}>
-            <View style={styles.top}>
-                <Touchable onPress={() => navigation.goBack()}>
-                    <View style={{
-                        padding: 10,
-                        borderRadius: 10,
-                    }}>
-                        <MaterialIcons name='arrow-back' size={30} style={{color: colors.textGray}}/>
-                    </View>
-                </Touchable>
-            </View>
+            {/*<View style={styles.top}>*/}
+            {/*    <Touchable onPress={() => navigation.goBack()}>*/}
+            {/*        <View style={{*/}
+            {/*            padding: 10,*/}
+            {/*            borderRadius: 10,*/}
+            {/*        }}>*/}
+            {/*            <MaterialIcons name='arrow-back' size={30} style={{color: colors.textGray}}/>*/}
+            {/*        </View>*/}
+            {/*    </Touchable>*/}
+            {/*</View>*/}
             <View style={styles.content}>
                 <FlatList
-                    numColumns={4}
+                    numColumns={3}
                     data={bonusList}
                     keyExtractor={item => item.id.toString()}
                     renderItem={({item}) => <BonusItem item={item} navigation={navigation}/>}
@@ -95,7 +95,8 @@ const Bonus = ({navigation}) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingHorizontal: 40
+        paddingHorizontal: 20,
+        backgroundColor: colors.white,
     },
     top: {
         padding: 10,

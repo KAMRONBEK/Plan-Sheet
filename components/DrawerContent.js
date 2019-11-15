@@ -46,8 +46,8 @@ let DrawerContent = ({navigation}) => {
                 />
             </View>
             <DrawerMenuItem
-                text={strings.user}
-                iconName="user"
+                text={strings.homePage}
+                iconName="home"
                 // onPress={()=>navigate('Profile',{})}
             />
             <DrawerMenuItem
@@ -57,19 +57,19 @@ let DrawerContent = ({navigation}) => {
             />
             <DrawerMenuItem
                 text={strings.history}
-                iconName="clock"
+                iconName="history"
                 onPress={()=>navigate('History',{})}
 
             />
             <DrawerMenuItem
                 text={strings.favorite}
-                iconName="heart"
+                iconName="favorite"
                 onPress={()=>navigate('Favorite',{})}
 
             />
             <DrawerMenuItem
-                text={strings.orderStatus}
-                iconName="truck"
+                text={strings.activeOrders}
+                iconName="local-shipping"
                 onPress={()=>navigate('Orders',{})}
             />
 
