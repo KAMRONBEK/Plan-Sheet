@@ -1,16 +1,18 @@
 import React from 'react';
 import {createStackNavigator} from 'react-navigation-stack';
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
-import {createMaterialTopTabNavigator} from 'react-navigation-tabs';
+import {createMaterialTopTabNavigator, createTabNavigator} from 'react-navigation-tabs';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import strings from '../localization/strings';
+import colors from '../constants/colors';
 
 import Login from '../screens/Login';
 import Main from '../screens/Main';
 import Category from '../screens/Category';
 import History from '../screens/History';
+import ActiveOrders from '../screens/ActiveOrders';
 import Favorite from '../screens/Favorite';
-import Bonus from '../screens/Bonus'
+import Bonus from '../screens/Bonus';
 
 import NavBar from '../components/NavBar';
 import DrawerMenuItem from '../components/DrawerContent';
@@ -76,6 +78,30 @@ const MainStack = createStackNavigator({
     },
 }, {});
 
+const HistoryStack = createMaterialTopTabNavigator({
+    History: {
+        screen: History,
+        navigationOptions: {
+            header: null,
+        },
+    },
+    ActiveOrders: {
+        screen: ActiveOrders,
+        navigationOptions: {
+            header: null,
+        },
+    },
+}, {
+    tabBarOptions: {
+        style: {
+            backgroundColor: colors.white,
+        },
+        labelStyle: {
+            color: colors.black,
+        },
+    },
+});
+
 const topTabNavigator = createMaterialTopTabNavigator(
     {
         Main: {
@@ -97,7 +123,7 @@ const topTabNavigator = createMaterialTopTabNavigator(
             },
         },
         History: {
-            screen: History,
+            screen: HistoryStack,
             navigationOptions: {
                 tabBarIcon: () => {
                     return <MaterialIcons name="history" size={17}/>;
