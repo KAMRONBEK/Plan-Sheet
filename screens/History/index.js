@@ -19,6 +19,7 @@ const History = ({navigation}) => {
             orderPrice: '70000',
             orderDate: '10/23/19   9:23 pm',
             deliveryDate: '10/23/19   9:23 pm',
+            oldPrice:'16000'
         },
         {
             id: 2,
@@ -34,6 +35,7 @@ const History = ({navigation}) => {
             orderPrice: '70000',
             orderDate: '10/23/19   9:23 pm',
             deliveryDate: '10/23/19   9:23 pm',
+            oldPrice:'16000'
         },
         {
             id: 3,
@@ -49,6 +51,7 @@ const History = ({navigation}) => {
             orderPrice: '70000',
             orderDate: '10/23/19   9:23 pm',
             deliveryDate: '10/23/19   9:23 pm',
+            oldPrice:'18000'
         },
         {
             id: 4,
@@ -64,6 +67,7 @@ const History = ({navigation}) => {
             orderPrice: '70000',
             orderDate: '10/23/19   9:23 pm',
             deliveryDate: '10/23/19   9:23 pm',
+            oldPrice:'16000'
         },
         {
             id: 5,
@@ -79,6 +83,7 @@ const History = ({navigation}) => {
             orderPrice: '70000',
             orderDate: '10/23/19   9:23 pm',
             deliveryDate: '10/23/19   9:23 pm',
+            oldPrice:'19000'
         },
         {
             id: 6,
@@ -94,6 +99,7 @@ const History = ({navigation}) => {
             orderPrice: '70000',
             orderDate: '10/23/19   9:23 pm',
             deliveryDate: '10/23/19   9:23 pm',
+            oldPrice:'18000'
         },
         {
             id: 7,
@@ -109,6 +115,7 @@ const History = ({navigation}) => {
             orderPrice: '70000',
             orderDate: '10/23/19   9:23 pm',
             deliveryDate: '10/23/19   9:23 pm',
+            oldPrice:'16000'
         },
         {
             id: 8,
@@ -124,6 +131,7 @@ const History = ({navigation}) => {
             orderPrice: '70000',
             orderDate: '10/23/19   9:23 pm',
             deliveryDate: '10/23/19   9:23 pm',
+            oldPrice:'16000'
         },
         {
             id: 9,
@@ -139,6 +147,7 @@ const History = ({navigation}) => {
             orderPrice: '70000',
             orderDate: '10/23/19   9:23 pm',
             deliveryDate: '10/23/19   9:23 pm',
+            oldPrice:'20000'
         },
         {
             id: 10,
@@ -154,6 +163,7 @@ const History = ({navigation}) => {
             orderPrice: '70000',
             orderDate: '10/23/19   9:23 pm',
             deliveryDate: '10/23/19   9:23 pm',
+            oldPrice:'16000'
         },
     ];
     return (

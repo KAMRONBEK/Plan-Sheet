@@ -48,29 +48,29 @@ let DrawerContent = ({navigation}) => {
             <DrawerMenuItem
                 text={strings.homePage}
                 iconName="home"
-                // onPress={()=>navigate('Profile',{})}
+                onPress={() => navigate('Main', {})}
             />
             <DrawerMenuItem
                 text={strings.category}
                 iconName="list"
-                onPress={()=>navigate('Category',{})}
+                onPress={() => navigate('Category', {})}
             />
             <DrawerMenuItem
                 text={strings.history}
                 iconName="history"
-                onPress={()=>navigate('History',{})}
+                onPress={() => navigate('History', {})}
 
             />
             <DrawerMenuItem
                 text={strings.favorite}
                 iconName="favorite"
-                onPress={()=>navigate('Favorite',{})}
+                onPress={() => navigate('Favorite', {})}
 
             />
             <DrawerMenuItem
                 text={strings.activeOrders}
                 iconName="local-shipping"
-                onPress={()=>navigate('Orders',{})}
+                onPress={() => navigate('Orders', {})}
             />
 
 
