@@ -7,20 +7,10 @@ import RoundedButton from './RoundedButton';
 import CircleButton from './CircleButton';
 import FilledButton from './FilledButton';
 import Touchable from './Touchable';
-import Modal from '../components/Modal';
 
 const ProductCardHistory = ({item}) => {
-    let [modalVisibility, setModalVisibility] = useState(false);
-
     return (
         <View style={styles.container}>
-            <Modal isOpen={modalVisibility}>
-                <View>
-                    <Text>
-                        some text
-                    </Text>
-                </View>
-            </Modal>
             <View style={styles.imageWrapper}>
                 <Image style={{
                     height: 85,
@@ -46,9 +36,11 @@ const ProductCardHistory = ({item}) => {
                     <Text style={styles.price}>{item.price} {item.priceUnit}</Text>
                 </View>
                 <Touchable onPress={() => {
-                    setModalVisibility(true);
+
                 }}>
-                    <FilledButton text={strings.ordering}/>
+                    <View>
+                        <FilledButton text={strings.ordering}/>
+                    </View>
                 </Touchable>
             </View>
         </View>

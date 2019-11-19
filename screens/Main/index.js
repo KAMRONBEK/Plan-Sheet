@@ -1,7 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Text, View, StyleSheet, FlatList} from 'react-native';
 import ProductCard from '../../components/ProductCard';
 import Header from '../../components/Header';
+import Modal from '../../components/Modal';
+import colors from '../../constants/colors';
+import ProductCardHistory from '../../components/ProductCardHistory';
+import Checkout from '../Checkout';
 
 let Main = ({navigation}) => {
     let ProductList = [
@@ -112,6 +116,9 @@ let Main = ({navigation}) => {
         },
     ];
 
+    let [modalVisibility, setModalVisibility] = useState(false);
+    let [selectedItemId, setSelectedItemID] = useState(-1);
+
     return (
         <React.Fragment>
             <View style={styles.container}>
@@ -119,9 +126,19 @@ let Main = ({navigation}) => {
                     <FlatList
                         keyExtractor={item => item.id.toString()}
                         data={ProductList}
-                        renderItem={({item}) => <ProductCard item={item} navigation={navigation}/>}
+                        renderItem={({item}) => <ProductCard
+                            item={item}
+                            navigation={navigation}
+                            modalOn={setModalVisibility}
+                            setItem={setSelectedItemID}/>}
                     />
                 </View>
+                {modalVisibility && <Modal isOpen={modalVisibility} navigation={navigation}>
+                    {/*<View style={{padding: 300, backgroundColor: colors.white}}>*/}
+
+                    {/*</View>*/}
+                    <Checkout item={ProductList[1]} navigation={navigation} modalOn={setModalVisibility}/>
+                </Modal>}
             </View>
         </React.Fragment>
     );

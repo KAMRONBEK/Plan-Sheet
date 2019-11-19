@@ -8,25 +8,25 @@ import CircleButton from './CircleButton';
 import FilledButton from './FilledButton';
 import Touchable from './Touchable';
 
-const ProductCard = ({item, navigation}) => {
+const ProductCard = ({item, navigation, modalOn, setItem}) => {
     const {navigate} = navigation;
     return (
-        <Touchable onPress={() => navigate('Product', {item: item})}>
+        <View
+            style={styles.container}>
             <View
-                style={styles.container}>
-                <View style={styles.content}>
-                    <View
-                        style={styles.image}>
-                        <Image
-                            source={{
-                                uri: item.image,
-                            }}
-                            style={{
-                                flex: 1,
-                                resizeMode: 'cover',
-                            }}
-                        />
-                    </View>
+                style={styles.image}>
+                <Image
+                    source={{
+                        uri: item.image,
+                    }}
+                    style={{
+                        flex: 1,
+                        resizeMode: 'cover',
+                    }}
+                />
+            </View>
+            <View style={styles.content}>
+                <Touchable onPress={() => navigate('Product', {item: item})}>
                     <View style={styles.textWrap}>
                         {/*<Touchable>*/}
                         <Text
@@ -41,60 +41,20 @@ const ProductCard = ({item, navigation}) => {
                         <Text style={styles.price}>
                             {item.price} {strings.priceUnit}
                         </Text>
-                        {/*</Touchable>*/}
-                        {/*<CircleButton/>*/}
+                    </View>
+                </Touchable>
+                <Touchable onPress={() => {
+                    modalOn(true);
+                    console.warn('some');
+                    setItem(item.id);
+                }
+                }>
+                    <View style={styles.buttonWrapper}>
                         <FilledButton text={strings.ordering}/>
                     </View>
-
-                </View>
-                {/*<View style={styles.middle}>*/}
-                {/*    <View style={styles.doubleText}>*/}
-                {/*        <Text>{strings.inStock}</Text>*/}
-                {/*        <Text*/}
-                {/*            style={{*/}
-                {/*                color: colors.green,*/}
-                {/*                paddingLeft: 20,*/}
-                {/*            }}>*/}
-                {/*            {item.remaining} {strings.piece}*/}
-                {/*        </Text>*/}
-                {/*    </View>*/}
-                {/*    <View style={styles.doubleText}>*/}
-                {/*        <Text>{strings.minimumOrder} </Text>*/}
-                {/*        <Text*/}
-                {/*            style={{*/}
-                {/*                color: colors.green,*/}
-                {/*                paddingLeft: 20,*/}
-                {/*            }}>*/}
-                {/*            {item.minimumOrder} {strings.piece}*/}
-                {/*        </Text>*/}
-                {/*    </View>*/}
-                {/*    <View style={styles.doubleText}>*/}
-                {/*        <Text>{strings.manufacturer}</Text>*/}
-                {/*        <Text*/}
-                {/*            style={{*/}
-                {/*                color: colors.green,*/}
-                {/*                paddingLeft: 20,*/}
-                {/*            }}>*/}
-                {/*            {item.manufacturer}*/}
-                {/*        </Text>*/}
-                {/*    </View>*/}
-                {/*</View>*/}
-                {/*<View style={styles.last}>*/}
-                {/*    <View style={styles.favorite}>*/}
-                {/*        <MaterialIcons name="favorite-border" size={25}/>*/}
-                {/*    </View>*/}
-                {/*    <View style={styles.price}>*/}
-                {/*        <Text style={styles.price}>*/}
-                {/*            {item.price} {strings.priceUnit}*/}
-                {/*        </Text>*/}
-                {/*    </View>*/}
-                {/*    <View style={styles.button}>*/}
-                {/*        /!*<RoundedButton text={strings.ordering}/>*!/*/}
-                {/*        <CircleButton disabled/>*/}
-                {/*    </View>*/}
-                {/*</View>*/}
+                </Touchable>
             </View>
-        </Touchable>
+        </View>
     );
 };
 
@@ -118,8 +78,7 @@ const styles = StyleSheet.create({
         // marginLeft: 15,
     },
     textWrap: {
-        borderBottomWidth: 0.6,
-        borderColor: colors.borderGray,
+        marginLeft: 10,
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
@@ -127,9 +86,12 @@ const styles = StyleSheet.create({
         // justifyContent: 'space-between',
         paddingHorizontal: 10,
         height: 82,
-        paddingBottom:20
+        paddingBottom: 20,
     },
     content: {
+        marginLeft: 10,
+        borderBottomWidth: 0.6,
+        borderColor: colors.borderGray,
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
@@ -143,38 +105,14 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         // marginHorizontal:15,
         // width: 100,
-        marginRight:20
+        marginRight: 20,
     },
     price: {
         marginRight: 30,
     },
-    // description: {
-    //     width: 170,
-    //     height: 80,
-    //     overflow: 'hidden',
-    // },
-    // middle: {
-    //     justifyContent: 'center',
-    // },
-    // doubleText: {
-    //     paddingVertical: 10,
-    //     flexDirection: 'row',
-    //     justifyContent: 'space-between',
-    // },
-    // last: {
-    //     justifyContent: 'center',
-    //     padding: 15,
-    // },
-    // favorite: {
-    //     alignItems: 'flex-end',
-    // },
-    // price: {
-    //     paddingLeft: 10,
-    //     fontSize: 17,
-    // },
-    // button: {
-    //     marginTop: -60,
-    // },
+  buttonWrapper:{
+        marginBottom:20
+  }
 });
 
 export default ProductCard;

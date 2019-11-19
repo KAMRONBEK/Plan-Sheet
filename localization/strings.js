@@ -33,7 +33,8 @@ export default new LocalizedStrings({
         showMore: 'Ko`proq ko`rsatish',
         exchange: 'Alishtirish',
         activeOrders:'Faol buyurtmalar',
-        homePage:'Bosh sahifa'
+        homePage:'Bosh sahifa',
+        option:'Tanlov'
     },
     ru: {
         main: 'Главный',
@@ -67,7 +68,8 @@ export default new LocalizedStrings({
         showMore: 'Показать больше',
         exchange: 'Обмен',
         activeOrders:'Активные заказы',
-        homePage:'Главная страница'
+        homePage:'Главная страница',
+        option:'Выбор'
     },
     angliskiy: {
         main: 'Main',
@@ -101,6 +103,7 @@ export default new LocalizedStrings({
         showMore: 'Show more',
         exchange: 'Exchange',
         activeOrders:'Active orders',
-        homePage:'Home page'
+        homePage:'Home page',
+        option:'Option'
     },
 });

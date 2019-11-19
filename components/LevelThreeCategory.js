@@ -3,9 +3,9 @@ import {View, Text, StyleSheet} from 'react-native';
 import Touchable from './Touchable';
 import colors from '../constants/colors';
 
-const LevelThreeCategory = ({item}) => {
+const LevelThreeCategory = ({item, onPress}) => {
     return (
-        <Touchable onPress={item.onPress}>
+        <Touchable onPress={onPress}>
             <View style={styles.container}>
                 <Text>{item.title}</Text>
             </View>
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 2,
         flexDirection: 'column',
         borderColor: colors.white,
-        paddingLeft:30,
+        paddingLeft: 30,
         paddingVertical: 23,
     },
 });

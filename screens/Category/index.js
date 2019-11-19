@@ -45,15 +45,17 @@ const Category = ({navigation}) => {
 
     let [thirdDisplay, setThirdDisplay] = useState(false);
     let [thirdData, setThirdData] = useState([]);
-
+    const {navigate} = navigation;
     return (
+
         <View style={styles.container}>
             <View style={styles.left}>
                 <FlatList
                     data={levelOneList}
                     keyExtractor={item => item.id.toString()}
                     renderItem={({item}) => <LevelOneCategory item={item} navigation={navigation}
-                                                              visibility={setSecondDisplay} thirdVisibility={setThirdDisplay}/>}
+                                                              visibility={setSecondDisplay}
+                                                              thirdVisibility={setThirdDisplay}/>}
                 />
             </View>
             <View style={styles.middle}>
@@ -71,7 +73,8 @@ const Category = ({navigation}) => {
                     <FlatList
                         data={levelThreeList}
                         keyExtractor={item => item.id.toString()}
-                        renderItem={({item}) => <LevelThreeCategory item={item} navigation={navigation}/>}
+                        renderItem={({item}) => <LevelThreeCategory item={item} navigation={navigation}
+                                                                    onPress={() => navigate('Main')}/>}
                     />
                 ) : <View/>}
             </View>

@@ -31,7 +31,7 @@ const BonusItem = ({navigation, item}) => {
                         color: (item.cost > currentBonus) ? colors.red : colors.black,
                     }]}>{item.cost}</Text>
                 </View>
-                <FilledButton invert text={strings.exchange}/>
+                <FilledButton  text={strings.exchange}/>
             </View>
         </View>
     );
@@ -76,11 +76,11 @@ const styles = StyleSheet.create({
     bonus: {
         flexDirection: 'row',
         paddingVertical: 3,
-        paddingHorizontal: 10,
-        borderRadius: 15,
-        borderBottomLeftRadius: 1,
+        // paddingHorizontal: 10,
+        // borderRadius: 15,
+        // borderBottomLeftRadius: 1,
         alignItems: 'center',
-        borderWidth: 0.4,
+        // borderWidth: 0.4,
         borderColor: colors.borderGray,
     },
     bonusText: {

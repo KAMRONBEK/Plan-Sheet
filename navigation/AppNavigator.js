@@ -146,7 +146,7 @@ const topTabNavigator = createMaterialTopTabNavigator(
     },
     {
         tabBarComponent: props => <Header {...props} />,
-        initialRouteName: 'History',
+        // initialRouteName: 'History',
         swipeEnabled: false,
     },
 );
