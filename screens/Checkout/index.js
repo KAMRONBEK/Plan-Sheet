@@ -28,13 +28,21 @@ let StockList = [
         stockTitle: 'mevali milk',
         selectedAmount: 0,
         price: 18000,
+    }, {
+        id: 4,
+        image: 'http://lemon.press/wp-content/uploads/2015/03/dsc_5694-2.jpg',
+        stockTitle: 'mevasiz milk',
+        selectedAmount: 0,
+        price: 17000,
     },
 ];
 
 const Checkout = ({navigation, item, modalOn}) => {
 
+    let [selectedType, setSelectedType] = useState(0);
+    let [totalCount, setTotalCount] = useState(0);
+    let [totalPrice, setTotalPrice] = useState(0);
 
-    console.warn(item);
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -71,13 +79,50 @@ const Checkout = ({navigation, item, modalOn}) => {
                 </View>
                 <View>
                     <FlatList
+                        style={{
+                            height: 300,
+                        }}
                         data={StockList}
                         keyExtractor={item => item.id.toString()}
-                        renderItem={({item}) => <ProductInCheckout item={item}/>}
+                        renderItem={({item}) => <ProductInCheckout
+                            item={item}
+                            setCount={setTotalCount}
+                            count={totalCount}
+                            setTypeCount={setSelectedType}
+                            typeCount={selectedType}
+                            setPrice={setTotalPrice}
+                            price={totalPrice}
+                        />}
+
                     />
                 </View>
                 <View style={styles.bottomWrapper}>
-                    <Text style={styles.overall}>0 tur , 0 dona, Umumiy narxi: UZS 0</Text>
+                    <View style={styles.overall}>
+                        <Text style={{
+                            color: colors.green,
+                        }}>
+                            {selectedType}{' '}
+                        </Text>
+                        <Text>
+                            {strings.type},{'  '}
+                        </Text>
+                        <Text style={{
+                            color: colors.green,
+                        }}>
+                            {totalCount}{' '}
+                        </Text>
+                        <Text>
+                            {strings.piece}, {strings.totalPrice}:{'  '}
+                        </Text>
+                        <Text style={{
+                            color: colors.green,
+                        }}>
+                            {totalPrice}{' '}
+                        </Text>
+                        <Text>
+                            {strings.uzs}
+                        </Text>
+                    </View>
                     <View style={styles.buttonWrapper}>
                         <FilledButton text={strings.ordering}/>
                     </View>
@@ -89,7 +134,7 @@ const Checkout = ({navigation, item, modalOn}) => {
 
 const styles = StyleSheet.create({
     container: {
-        width: 450,
+        width: 480,
         backgroundColor: colors.white,
         // borderBottomRightRadius: 40,
     },
@@ -140,6 +185,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     overall: {
+        flexDirection: 'row',
         paddingVertical: 20,
         paddingTop: 60,
     },

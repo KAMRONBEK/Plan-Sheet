@@ -1,12 +1,19 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, Image, StyleSheet} from 'react-native';
 import strings from '../localization/strings';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import colors from '../constants/colors';
 import Touchable from './Touchable';
 
-const ProductInCheckout = ({item}) => {
-    let [selected, setSelected] = useState(item.selectedAmount);
+const ProductInCheckout = ({item, setCount, count, setTypeCount, typeCount, setPrice, price}) => {
+    let [selected, setSelected] = useState(0);
+    let totalCount = count;
+    let selectedType = typeCount;
+    let totalPrice = price;
+
+    useEffect(() => {
+    }, []);
+
     return (
         <View style={styles.container}>
             <View style={styles.imageWrapper}>
@@ -27,7 +34,10 @@ const ProductInCheckout = ({item}) => {
             <View>
                 <View style={styles.sickSelector}>
                     <Touchable onPress={() => {
+                        (selected === 1 && typeCount > 0) ? setTypeCount(selectedType - 1) : setTypeCount(selectedType);
+                        (count > 0 && selected > 0) ? setCount(totalCount - 1) : setCount(count);
                         (selected > 0) ? setSelected(selected - 1) : setSelected(0);
+                        (selected > 0) ? setPrice(totalPrice - item.price) : setPrice(totalPrice);
                     }}>
                         <View style={styles.minus}>
                             <MaterialIcons name='remove' size={20} style={{
@@ -40,6 +50,9 @@ const ProductInCheckout = ({item}) => {
                     </View>
                     <Touchable onPress={() => {
                         setSelected(selected + 1);
+                        setCount(totalCount + 1);
+                        setPrice(totalPrice + item.price);
+                        (selected === 0) ? setTypeCount(typeCount + 1) : setTypeCount(typeCount);
                     }}>
                         <View style={styles.plus}>
                             <MaterialIcons name='add' size={20} style={{

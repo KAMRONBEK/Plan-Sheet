@@ -45,7 +45,6 @@ const ProductCard = ({item, navigation, modalOn, setItem}) => {
                 </Touchable>
                 <Touchable onPress={() => {
                     modalOn(true);
-                    console.warn('some');
                     setItem(item.id);
                 }
                 }>
@@ -102,17 +101,18 @@ const styles = StyleSheet.create({
     title: {
         // fontSize: 17,
         flex: 1,
-        textAlign: 'center',
+        // textAlign: 'center',
         // marginHorizontal:15,
         // width: 100,
         marginRight: 20,
+        paddingLeft: 30,
     },
     price: {
         marginRight: 30,
     },
-  buttonWrapper:{
-        marginBottom:20
-  }
+    buttonWrapper: {
+        marginBottom: 20,
+    },
 });
 
 export default ProductCard;
