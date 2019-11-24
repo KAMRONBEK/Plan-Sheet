@@ -5,6 +5,7 @@ import {createMaterialTopTabNavigator, createTabNavigator} from 'react-navigatio
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import strings from '../localization/strings';
 import colors from '../constants/colors';
+import {connect} from 'react-redux';
 
 import Login from '../screens/Login';
 import Main from '../screens/Main';
@@ -161,25 +162,11 @@ const Example = createStackNavigator({
     },
 });
 
-const AppNavigator = createSwitchNavigator({
-
-    // Example: Example,
-    Tabs: {
-        screen: topTabNavigator,
-        navigationOptions: {
-            header: () => <Header/>,
-        },
-    },
-    Login: {
-        screen: Login,
-    },
-});
-
 const DrawerNavigator = createDrawerNavigator(
     {
         all: createStackNavigator(
             {
-                AppNavigator,
+                topTabNavigator,
             },
             {
                 headerMode: 'none',
@@ -198,6 +185,26 @@ const DrawerNavigator = createDrawerNavigator(
     },
 );
 
-const AppContainer = createAppContainer(DrawerNavigator);
+const AppNavigator = createSwitchNavigator({
 
-export default AppContainer;
+    // Example: Example,
+    Login: {
+        screen: Login,
+    },
+    DrawerNavigator: {
+        screen: DrawerNavigator,
+    },
+
+});
+
+const AppContainer = ({isAuthorized, ...rest}) => {
+    let Navigator = createAppContainer(AppNavigator);
+    if (isAuthorized) {
+        Navigator = createAppContainer(DrawerNavigator);
+    }
+    return <Navigator {...rest}/>;
+};
+
+let mapStateToProps = ({user}) => ({isAuthorized: !!user});
+
+export default connect(mapStateToProps)(AppContainer);

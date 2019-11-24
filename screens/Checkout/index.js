@@ -124,7 +124,9 @@ const Checkout = ({navigation, item, modalOn}) => {
                         </Text>
                     </View>
                     <View style={styles.buttonWrapper}>
-                        <FilledButton text={strings.ordering}/>
+                        <Touchable>
+                            <FilledButton text={strings.ordering}/>
+                        </Touchable>
                     </View>
                 </View>
             </View>

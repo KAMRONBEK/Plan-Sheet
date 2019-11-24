@@ -38,6 +38,7 @@ export default new LocalizedStrings({
         type: 'Tur',
         totalPrice: 'Umumiy narx',
         uzs: 'UZS',
+        orderSuccessful: 'Muvoffaqiyatli yakunlandi!',
     },
     ru: {
         main: 'Главный',
@@ -76,6 +77,7 @@ export default new LocalizedStrings({
         type: 'Тип',
         totalPrice: 'Итоговая цена',
         uzs: 'UZS',
+        orderSuccessful: 'Заказ успешно!',
     },
     angliskiy: {
         main: 'Main',
@@ -114,5 +116,6 @@ export default new LocalizedStrings({
         type: 'Type',
         totalPrice: 'Total price',
         uzs: 'UZS',
+        orderSuccessful: 'Order Successful!',
     },
 });

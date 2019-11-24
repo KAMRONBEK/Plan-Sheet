@@ -6,6 +6,7 @@ import Modal from '../../components/Modal';
 import colors from '../../constants/colors';
 import ProductCardHistory from '../../components/ProductCardHistory';
 import Checkout from '../Checkout';
+import strings from '../../localization/strings';
 
 let Main = ({navigation}) => {
     let ProductList = [
@@ -118,6 +119,7 @@ let Main = ({navigation}) => {
 
     let [modalVisibility, setModalVisibility] = useState(false);
     let [selectedItemId, setSelectedItemID] = useState(-1);
+    let [successVisibility, setSuccessVisibility] = useState(false);
 
     return (
         <React.Fragment>
@@ -138,6 +140,16 @@ let Main = ({navigation}) => {
 
                     {/*</View>*/}
                     <Checkout item={ProductList[1]} navigation={navigation} modalOn={setModalVisibility}/>
+                </Modal>}
+                {successVisibility && <Modal isOpen={successVisibility} navigation={navigation}>
+                    <View style={{
+                        padding: 80,
+                        backgroundColor: colors.white,
+                    }}>
+                        <Text style={{
+                            fontSize:25
+                        }}>{strings.orderSuccessful}</Text>
+                    </View>
                 </Modal>}
             </View>
         </React.Fragment>

@@ -3,6 +3,7 @@ import {View, Image, Text, StyleSheet} from 'react-native';
 import DrawerMenuItem from '../components/DrawerMenuItem';
 import colors from '../constants/colors';
 import strings from '../localization/strings';
+import {ScrollView} from 'react-navigation';
 
 let DrawerContent = ({navigation}) => {
     const {navigate} = navigation;
@@ -45,35 +46,35 @@ let DrawerContent = ({navigation}) => {
                        }}
                 />
             </View>
-            <DrawerMenuItem
-                text={strings.homePage}
-                iconName="home"
-                onPress={() => navigate('Main', {})}
-            />
-            <DrawerMenuItem
-                text={strings.category}
-                iconName="list"
-                onPress={() => navigate('Category', {})}
-            />
-            <DrawerMenuItem
-                text={strings.history}
-                iconName="history"
-                onPress={() => navigate('History', {})}
+            <ScrollView >
+                <DrawerMenuItem
+                    text={strings.homePage}
+                    iconName="home"
+                    onPress={() => navigate('Main', {})}
+                />
+                <DrawerMenuItem
+                    text={strings.category}
+                    iconName="list"
+                    onPress={() => navigate('Category', {})}
+                />
+                <DrawerMenuItem
+                    text={strings.history}
+                    iconName="history"
+                    onPress={() => navigate('History', {})}
 
-            />
-            <DrawerMenuItem
-                text={strings.favorite}
-                iconName="favorite"
-                onPress={() => navigate('Favorite', {})}
+                />
+                <DrawerMenuItem
+                    text={strings.favorite}
+                    iconName="favorite"
+                    onPress={() => navigate('Favorite', {})}
 
-            />
-            <DrawerMenuItem
-                text={strings.activeOrders}
-                iconName="local-shipping"
-                onPress={() => navigate('Orders', {})}
-            />
-
-
+                />
+                <DrawerMenuItem
+                    text={strings.activeOrders}
+                    iconName="local-shipping"
+                    onPress={() => navigate('Orders', {})}
+                />
+            </ScrollView>
         </View>
     );
 };
