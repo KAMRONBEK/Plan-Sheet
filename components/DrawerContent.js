@@ -64,9 +64,9 @@ let DrawerContent = ({navigation}) => {
 
                 />
                 <DrawerMenuItem
-                    text={strings.favorite}
-                    iconName="favorite"
-                    onPress={() => navigate('Favorite', {})}
+                    text={strings.wallet}
+                    iconName="account-balance-wallet"
+                    onPress={() => navigate('Wallet', {})}
 
                 />
                 <DrawerMenuItem

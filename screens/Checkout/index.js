@@ -37,7 +37,7 @@ let StockList = [
     },
 ];
 
-const Checkout = ({navigation, item, modalOn}) => {
+const Checkout = ({navigation, item, modalOn, alertOn}) => {
 
     let [selectedType, setSelectedType] = useState(0);
     let [totalCount, setTotalCount] = useState(0);
@@ -124,8 +124,13 @@ const Checkout = ({navigation, item, modalOn}) => {
                         </Text>
                     </View>
                     <View style={styles.buttonWrapper}>
-                        <Touchable>
-                            <FilledButton text={strings.ordering}/>
+                        <Touchable onPress={() => {
+                            alertOn(true);
+                            console.warn('some');
+                        }}>
+                            <View>
+                                <FilledButton text={strings.ordering}/>
+                            </View>
                         </Touchable>
                     </View>
                 </View>

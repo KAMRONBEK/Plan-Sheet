@@ -17,20 +17,20 @@ const Product = ({navigation}) => {
     // let [item, setItem] = useState(navigation.getParam(item));
     return (
         <View style={styles.container}>
-            <View style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-            }}>
-                <Touchable onPress={() => navigation.goBack()}>
-                    <View style={{
-                        padding: 10,
-                        borderRadius: 10,
-                    }}>
-                        <MaterialIcons name='arrow-back' size={30} style={{color: colors.textGray}}/>
-                    </View>
-                </Touchable>
-                <MaterialIcons name='favorite-border' size={30} style={{color: colors.green}}/>
-            </View>
+            {/*<View style={{*/}
+            {/*    flexDirection: 'row',*/}
+            {/*    justifyContent: 'space-between',*/}
+            {/*}}>*/}
+            {/*    <Touchable onPress={() => navigation.goBack()}>*/}
+            {/*        <View style={{*/}
+            {/*            padding: 10,*/}
+            {/*            borderRadius: 10,*/}
+            {/*        }}>*/}
+            {/*            <MaterialIcons name='arrow-back' size={30} style={{color: colors.textGray}}/>*/}
+            {/*        </View>*/}
+            {/*    </Touchable>*/}
+            {/*    <MaterialIcons name='favorite-border' size={30} style={{color: colors.green}}/>*/}
+            {/*</View>*/}
             <View style={styles.content}>
                 <View style={styles.imageWrapper}>
                     <Image style={{
@@ -47,7 +47,6 @@ const Product = ({navigation}) => {
                             borderWidth: 1,
                             borderColor:colors.borderGray
                         }}>
-
                             <Image
                                 source={{
                                     uri: 'https://adnstudio.com/wp-content/uploads/2014/03/como-vender-un-producto-de-forma-efectiva-con-tecnicas-de-branding-branding-adnstudio.jpg',

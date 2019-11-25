@@ -17,7 +17,7 @@ const SearchBar = () => {
                 fontWeight: '100',
                 paddingHorizontal: 20,
                 paddingVertical: 5,
-                color: colors.textGray,
+                color: colors.green,
             }}/>
             <TextInput placeholder={strings.searchProduct} style={styles.input}/>
         </View>
@@ -33,14 +33,16 @@ const styles = StyleSheet.create({
 
         // paddingHorizontal: 15,
         borderRadius: 7,
-        marginHorizontal: 20,
+        marginHorizontal: 10,
+        marginLeft:30
     },
     input: {
         alignContent: 'center',
         height: 30,
         flex: 1,
         padding: 0,
-        fontSize: 15,
+        fontSize: 13,
+        fontStyle:'italic',
         fontWeight: '100',
     },
 });

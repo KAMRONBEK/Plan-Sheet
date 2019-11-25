@@ -29,6 +29,10 @@ const Header = ({navigation}) => {
                     <Text style={styles.bonusText}>50</Text>
                 </View>
             </Touchable>
+            <View style={styles.bonus}>
+                <FontAwesome5 name='wallet' size={15} color={colors.yellow} />
+                <Text style={styles.bonusText}>12 000 000 / 52 000 UZS</Text>
+            </View>
         </View>
     );
 };
@@ -47,11 +51,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         paddingVertical: 5,
         paddingHorizontal: 15,
-        borderRadius: 15,
+        borderRadius: 5,
+        marginHorizontal:10,
         alignItems: 'center',
     },
     bonusText: {
-        color: colors.black,
+        color: colors.white,
         paddingLeft: 10,
         fontSize: 16,
     },

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Text, View, StyleSheet, FlatList} from 'react-native';
+import {Text, View, StyleSheet, FlatList,Alert} from 'react-native';
 import ProductCard from '../../components/ProductCard';
 import Header from '../../components/Header';
 import Modal from '../../components/Modal';
@@ -120,6 +120,10 @@ let Main = ({navigation}) => {
     let [modalVisibility, setModalVisibility] = useState(false);
     let [selectedItemId, setSelectedItemID] = useState(-1);
     let [successVisibility, setSuccessVisibility] = useState(false);
+    let [alertVisibility,setAlertVisibility]=useState(false);
+
+    // alert
+
 
     return (
         <React.Fragment>
@@ -139,8 +143,24 @@ let Main = ({navigation}) => {
                     {/*<View style={{padding: 300, backgroundColor: colors.white}}>*/}
 
                     {/*</View>*/}
-                    <Checkout item={ProductList[1]} navigation={navigation} modalOn={setModalVisibility}/>
+                    <Checkout item={ProductList[1]} navigation={navigation} modalOn={setModalVisibility} alertOn={setAlertVisibility}/>
                 </Modal>}
+                {
+                    alertVisibility&& Alert.alert(
+                        'Alert Title',
+                        'My Alert Msg',
+                        [
+                            {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
+                            {
+                                text: 'Cancel',
+                                onPress: () => console.warn('Cancel Pressed'),
+                                style: 'cancel',
+                            },
+                            {text: 'OK', onPress: () => console.warn('OK Pressed')},
+                        ],
+                        {cancelable: false},
+                    )
+                }
                 {successVisibility && <Modal isOpen={successVisibility} navigation={navigation}>
                     <View style={{
                         padding: 80,

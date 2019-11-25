@@ -12,7 +12,7 @@ import Main from '../screens/Main';
 import Category from '../screens/Category';
 import History from '../screens/History';
 import ActiveOrders from '../screens/ActiveOrders';
-import Favorite from '../screens/Favorite';
+import Wallet from '../screens/Wallet';
 import Bonus from '../screens/Bonus';
 
 import NavBar from '../components/NavBar';
@@ -51,8 +51,8 @@ import Header from '../components/Header';
 //                 tabBarLabel: strings.history,
 //             },
 //         },
-//         Favorite: {
-//             screen: Favorite,
+//         Wallet: {
+//             screen: Wallet,
 //             navigationOptions: {
 //                 tabBarIcon: () => {
 //                     return <MaterialIcons name="favorite" size={17}/>;
@@ -132,13 +132,13 @@ const topTabNavigator = createMaterialTopTabNavigator(
                 tabBarLabel: strings.history,
             },
         },
-        Favorite: {
-            screen: Favorite,
+        Wallet: {
+            screen: Wallet,
             navigationOptions: {
                 tabBarIcon: () => {
-                    return <MaterialIcons name="favorite" size={17}/>;
+                    return <MaterialIcons name="wallet" size={17}/>;
                 },
-                tabBarLabel: strings.favorite,
+                tabBarLabel: strings.wallet,
             },
         },
         Bonus: {

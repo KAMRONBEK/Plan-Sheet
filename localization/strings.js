@@ -3,7 +3,7 @@ import LocalizedStrings from 'localized-strings';
 export default new LocalizedStrings({
     uz: {
         main: 'Asosiy',
-        category: 'Bo\'imlar',
+        category: 'Bo\'limlar',
         history: 'Qaydnoma',
         favorite: 'Yoqtirilganlar',
         login: 'Sistemaga kirish',
@@ -39,6 +39,10 @@ export default new LocalizedStrings({
         totalPrice: 'Umumiy narx',
         uzs: 'UZS',
         orderSuccessful: 'Muvoffaqiyatli yakunlandi!',
+        wallet: 'Mening hisobim',
+        inYourBalance: 'Hisobingizda',
+        bonusBalance: 'Bonus balansi',
+        fillBalance: 'Hisobingizni to\'ldiring',
     },
     ru: {
         main: 'Главный',
@@ -78,6 +82,10 @@ export default new LocalizedStrings({
         totalPrice: 'Итоговая цена',
         uzs: 'UZS',
         orderSuccessful: 'Заказ успешно!',
+        wallet: 'Кошелек',
+        inYourBalance: 'В вашем балансе',
+        bonusBalance: 'Бонусный баланс',
+        fillBalance: 'Пополнитe баланс',
     },
     angliskiy: {
         main: 'Main',
@@ -117,5 +125,9 @@ export default new LocalizedStrings({
         totalPrice: 'Total price',
         uzs: 'UZS',
         orderSuccessful: 'Order Successful!',
+        wallet: 'Wallet',
+        inYourBalance: 'In your balance',
+        bonusBalance: 'Bonus balance',
+        fillBalance: 'Fill the balance',
     },
 });
