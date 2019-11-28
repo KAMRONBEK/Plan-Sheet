@@ -5,6 +5,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import colors from '../constants/colors';
 import Touchable from './Touchable';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+// import Icons from '../constants/icons';
 
 const Header = ({navigation}) => {
     let {navigate} = navigation;
@@ -21,6 +22,9 @@ const Header = ({navigation}) => {
                                    }}/>
                 </View>
             </Touchable>
+            {/*<Icons name='uzcard' size={30} style={{*/}
+            {/*    color:colors.textGray*/}
+            {/*}}/>*/}
             <SearchBar/>
             <Touchable onPress={() => navigate('Bonus', {})}>
                 <View
@@ -29,10 +33,12 @@ const Header = ({navigation}) => {
                     <Text style={styles.bonusText}>50</Text>
                 </View>
             </Touchable>
-            <View style={styles.bonus}>
-                <FontAwesome5 name='wallet' size={15} color={colors.yellow} />
-                <Text style={styles.bonusText}>12 000 000 / 52 000 UZS</Text>
-            </View>
+            <Touchable onPress={()=>navigate('Wallet',{})}>
+                <View style={styles.bonus}>
+                    <FontAwesome5 name='wallet' size={15} color={colors.yellow} />
+                    <Text style={styles.bonusText}>12 000 000 / 52 000 UZS</Text>
+                </View>
+            </Touchable>
         </View>
     );
 };

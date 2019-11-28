@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Text, View, StyleSheet, FlatList,Alert} from 'react-native';
+import {Text, View, StyleSheet, FlatList, Alert} from 'react-native';
 import ProductCard from '../../components/ProductCard';
 import Header from '../../components/Header';
 import Modal from '../../components/Modal';
@@ -7,6 +7,12 @@ import colors from '../../constants/colors';
 import ProductCardHistory from '../../components/ProductCardHistory';
 import Checkout from '../Checkout';
 import strings from '../../localization/strings';
+
+// qgl
+import {LOGIN_USER, VERIFY_SHOP} from '../../graphql/requests';
+import {userLoaded} from '../../actions/itemActions';
+import {useLazyQuery} from '@apollo/react-hooks';
+
 
 let Main = ({navigation}) => {
     let ProductList = [
@@ -120,8 +126,15 @@ let Main = ({navigation}) => {
     let [modalVisibility, setModalVisibility] = useState(false);
     let [selectedItemId, setSelectedItemID] = useState(-1);
     let [successVisibility, setSuccessVisibility] = useState(false);
-    let [alertVisibility,setAlertVisibility]=useState(false);
+    let [alertVisibility, setAlertVisibility] = useState(false);
 
+    // const navigate = {navigation};
+    // const [verifyUser, {loading, data, error}] = useLazyQuery(VERIFY_SHOP);
+    // if (data) {
+    //     console.warn(data);
+    //     dispatch(userLoaded(data.loginShop));
+    //     navigate('Main', {});
+    // }
     // alert
 
 
@@ -143,10 +156,11 @@ let Main = ({navigation}) => {
                     {/*<View style={{padding: 300, backgroundColor: colors.white}}>*/}
 
                     {/*</View>*/}
-                    <Checkout item={ProductList[1]} navigation={navigation} modalOn={setModalVisibility} alertOn={setAlertVisibility}/>
+                    <Checkout item={ProductList[1]} navigation={navigation} modalOn={setModalVisibility}
+                              alertOn={setAlertVisibility}/>
                 </Modal>}
                 {
-                    alertVisibility&& Alert.alert(
+                    alertVisibility && Alert.alert(
                         'Alert Title',
                         'My Alert Msg',
                         [
@@ -167,7 +181,7 @@ let Main = ({navigation}) => {
                         backgroundColor: colors.white,
                     }}>
                         <Text style={{
-                            fontSize:25
+                            fontSize: 25,
                         }}>{strings.orderSuccessful}</Text>
                     </View>
                 </Modal>}

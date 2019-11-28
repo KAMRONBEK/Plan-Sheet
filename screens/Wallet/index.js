@@ -1,10 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, Image, StyleSheet, FlatList, ScrollView} from 'react-native';
 import Header from '../../components/Header';
 import strings from '../../localization/strings';
 import colors from '../../constants/colors';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import TimelineItem from '../../components/TimelineItem';
+import Uzcard from '../../constants/icons';
+import Modal from '../../components/Modal';
+import Payment from './Payment';
+import Touchable from '../../components/Touchable';
 
 const usageList = [
     {
@@ -38,153 +42,169 @@ const usageList = [
 
 ];
 
-const Wallet = ({navigation}) => {
 
+const Wallet = ({navigation}) => {
+    let [paymentVisibility, setPaymentVisibility] = useState(false);
+
+    let temp = paymentVisibility;
     return (
-        <ScrollView style={styles.container}>
-            <View style={styles.top}>
-                <View style={styles.imageWrapper}>
-                    <Image style={{
-                        height: 120,
-                        width: 120,
-                    }} source={{
-                        uri: 'https://pbs.twimg.com/profile_images/1168193672028069888/cxvQzRaC_400x400.jpg',
-                    }}/>
-                </View>
-                <Text style={styles.name}>sdfasd af asdfasd</Text>
-                <View style={styles.infoWrapper}>
-                    <View style={styles.infoLeft}>
-                        <Text style={styles.infoTitle}>
-                            {strings.inYourBalance}
-                        </Text>
-                        <Text style={styles.infoText}>
-                            1230123 {strings.uzs}
-                        </Text>
+        <React.Fragment>
+            <ScrollView style={styles.container}>
+                <View style={styles.top}>
+                    <View style={styles.imageWrapper}>
+                        <Image style={{
+                            height: 120,
+                            width: 120,
+                        }} source={{
+                            uri: 'https://pbs.twimg.com/profile_images/1168193672028069888/cxvQzRaC_400x400.jpg',
+                        }}/>
                     </View>
-                    <View style={styles.infoMiddle}>
-                        <Text style={styles.infoTitle}>
-                            {strings.bonusBalance}
-                        </Text>
-                        <Text style={styles.infoText}>
-                            50
-                        </Text>
-                    </View>
-                    <View style={styles.infoRight}>
-                        <Text style={[styles.infoTitle, {
-                            color: colors.white,
-                        }]}>
-                            {strings.fillBalance}!
-                        </Text>
-                        <View style={styles.iconsPill}>
-                            <FontAwesome name='plus' size={20} color={colors.white}/>
-                            <FontAwesome name='cc-visa' size={20} color={colors.white}/>
-                            <FontAwesome name='cc-mastercard' size={20} color={colors.white}/>
-                            <FontAwesome name='paypal' size={20} color={colors.white}/>
+                    <Text style={styles.name}>sdfasd af asdfasd</Text>
+                    <View style={styles.infoWrapper}>
+                        <View style={styles.infoLeft}>
+                            <Text style={styles.infoTitle}>
+                                {strings.inYourBalance}
+                            </Text>
+                            <Text style={styles.infoText}>
+                                1230123 {strings.uzs}
+                            </Text>
                         </View>
+                        <View style={styles.infoMiddle}>
+                            <Text style={styles.infoTitle}>
+                                {strings.bonusBalance}
+                            </Text>
+                            <Text style={styles.infoText}>
+                                50
+                            </Text>
+                        </View>
+                        <Touchable onPress={() => {
+                            setPaymentVisibility(true);
+                        }}>
+                            <View style={styles.infoRight}>
+                                <Text style={[styles.infoTitle, {
+                                    color: colors.white,
+                                }]}>
+                                    {strings.fillBalance}!
+                                </Text>
+
+                                <View style={styles.iconsPill}>
+                                    <FontAwesome name='plus' size={20} color={colors.white}/>
+                                    <FontAwesome name='cc-visa' size={20} color={colors.white}/>
+                                    <FontAwesome name='cc-mastercard' size={20} color={colors.white}/>
+                                    <FontAwesome name='paypal' size={20} color={colors.white}/>
+                                </View>
+                            </View>
+                        </Touchable>
+
                     </View>
                 </View>
-            </View>
-            <ScrollView showsVerticalScrollIndicator={false}>
-                <View style={{
-                    marginVertical: 20,
-                    backgroundColor: colors.white,
-                    paddingVertical: 20,
-                    paddingTop: 10,
-                }}>
+                <View showsVerticalScrollIndicator={false}>
                     <View style={{
-                        paddingLeft: 20,
-                        paddingBottom: 10,
-                    }}>
-                        <Text style={{
-                            fontSize: 18,
-                            // color:colors.textGray
-                        }}>To`lovlar monitoringi</Text>
-                    </View>
-                    <View style={{
-                        flexDirection: 'row',
-                        // alignItems:'space-between'
+                        marginVertical: 20,
+                        backgroundColor: colors.white,
+                        paddingVertical: 20,
+                        paddingTop: 10,
                     }}>
                         <View style={{
-                            flex: 1,
-                            paddingHorizontal: 15,
+                            paddingLeft: 20,
+                            paddingBottom: 10,
                         }}>
                             <Text style={{
-                                color: colors.textGray,
-                                fontSize: 13,
-                                paddingHorizontal: 10,
-                            }}>Kirim</Text>
-                            <Text style={{
-                                color: colors.green,
-                                fontSize: 16,
-                            }}>+1000000 {strings.uzs}</Text>
+                                fontSize: 18,
+                                // color:colors.textGray
+                            }}>To`lovlar monitoringi</Text>
                         </View>
                         <View style={{
-                            flex: 1,
-                            paddingHorizontal: 15,
-                            alignItems: 'flex-end',
+                            flexDirection: 'row',
+                            // alignItems:'space-between'
                         }}>
-                            <Text style={{
-                                color: colors.textGray,
-                                fontSize: 13,
-                                paddingLeft: 10,
-                            }}>Chiqim</Text>
-                            <Text style={{
-                                color: colors.red,
-                                fontSize: 16,
-                            }}>-1000000 {strings.uzs}</Text>
+                            <View style={{
+                                flex: 1,
+                                paddingHorizontal: 15,
+                            }}>
+                                <Text style={{
+                                    color: colors.textGray,
+                                    fontSize: 13,
+                                    paddingHorizontal: 10,
+                                }}>Kirim</Text>
+                                <Text style={{
+                                    color: colors.green,
+                                    fontSize: 16,
+                                }}>+1000000 {strings.uzs}</Text>
+                            </View>
+                            <View style={{
+                                flex: 1,
+                                paddingHorizontal: 15,
+                                alignItems: 'flex-end',
+                            }}>
+                                <Text style={{
+                                    color: colors.textGray,
+                                    fontSize: 13,
+                                    paddingLeft: 10,
+                                }}>Chiqim</Text>
+                                <Text style={{
+                                    color: colors.red,
+                                    fontSize: 16,
+                                }}>-1000000 {strings.uzs}</Text>
+                            </View>
                         </View>
                     </View>
-                </View>
-                <View style={styles.timeline}>
-                    <Text style={styles.timelineTitle}>16 Noyabr, 2019</Text>
-                    <FlatList
-                        keyExtractor={item => item.id.toString()}
-                        data={usageList}
-                        renderItem={({item}) => <TimelineItem item={item} navigation={navigation}/>}
-                    />
-                </View>
-                <View style={styles.timeline}>
-                    <Text style={styles.timelineTitle}>16 dhsdfg, 2019</Text>
-                    <FlatList
-                        keyExtractor={item => item.id.toString()}
-                        data={usageList}
-                        renderItem={({item}) => <TimelineItem item={item} navigation={navigation}/>}
-                    />
-                </View>
-                <View style={styles.timeline}>
+                    <View style={styles.timeline}>
+                        <Text style={styles.timelineTitle}>16 Noyabr, 2019</Text>
+                        <FlatList
+                            keyExtractor={item => item.id.toString()}
+                            data={usageList}
+                            renderItem={({item}) => <TimelineItem item={item} navigation={navigation}/>}
+                        />
+                    </View>
+                    <View style={styles.timeline}>
                         <Text style={styles.timelineTitle}>16 dhsdfg, 2019</Text>
-                    <FlatList
-                        keyExtractor={item => item.id.toString()}
-                        data={usageList}
-                        renderItem={({item}) => <TimelineItem item={item} navigation={navigation}/>}
-                    />
-                </View>
-                <View style={styles.timeline}>
-                    <Text style={styles.timelineTitle}>16 dhsdfg, 2019</Text>
-                    <FlatList
-                        keyExtractor={item => item.id.toString()}
-                        data={usageList}
-                        renderItem={({item}) => <TimelineItem item={item} navigation={navigation}/>}
-                    />
-                </View>
-                <View style={styles.timeline}>
-                    <Text style={styles.timelineTitle}>16 dhsdfg, 2019</Text>
-                    <FlatList
-                        keyExtractor={item => item.id.toString()}
-                        data={usageList}
-                        renderItem={({item}) => <TimelineItem item={item} navigation={navigation}/>}
-                    />
-                </View>
-                <View style={styles.timeline}>
-                    <Text style={styles.timelineTitle}>16 dhsdfg, 2019</Text>
-                    <FlatList
-                        keyExtractor={item => item.id.toString()}
-                        data={usageList}
-                        renderItem={({item}) => <TimelineItem item={item} navigation={navigation}/>}
-                    />
+                        <FlatList
+                            keyExtractor={item => item.id.toString()}
+                            data={usageList}
+                            renderItem={({item}) => <TimelineItem item={item} navigation={navigation}/>}
+                        />
+                    </View>
+                    <View style={styles.timeline}>
+                        <Text style={styles.timelineTitle}>16 dhsdfg, 2019</Text>
+                        <FlatList
+                            keyExtractor={item => item.id.toString()}
+                            data={usageList}
+                            renderItem={({item}) => <TimelineItem item={item} navigation={navigation}/>}
+                        />
+                    </View>
+                    <View style={styles.timeline}>
+                        <Text style={styles.timelineTitle}>16 dhsdfg, 2019</Text>
+                        <FlatList
+                            keyExtractor={item => item.id.toString()}
+                            data={usageList}
+                            renderItem={({item}) => <TimelineItem item={item} navigation={navigation}/>}
+                        />
+                    </View>
+                    <View style={styles.timeline}>
+                        <Text style={styles.timelineTitle}>16 dhsdfg, 2019</Text>
+                        <FlatList
+                            keyExtractor={item => item.id.toString()}
+                            data={usageList}
+                            renderItem={({item}) => <TimelineItem item={item} navigation={navigation}/>}
+                        />
+                    </View>
+                    <View style={styles.timeline}>
+                        <Text style={styles.timelineTitle}>16 dhsdfg, 2019</Text>
+                        <FlatList
+                            keyExtractor={item => item.id.toString()}
+                            data={usageList}
+                            renderItem={({item}) => <TimelineItem item={item} navigation={navigation}/>}
+                        />
+                    </View>
                 </View>
             </ScrollView>
-        </ScrollView>
+            {paymentVisibility && <Modal isOpen={paymentVisibility} navigation={navigation}>
+                {/*<View style={{padding: 300, backgroundColor: colors.white}}>*/}
+                {/*</View>*/}
+                <Payment/>
+            </Modal>}
+        </React.Fragment>
     );
 };
 
@@ -257,7 +277,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     timeline: {
-        marginTop:-20,
+        marginTop: -20,
         // padding: 20,
         // backgroundColor:colors.white,
         // marginTop: 20,
