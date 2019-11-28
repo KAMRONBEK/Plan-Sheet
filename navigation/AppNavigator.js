@@ -205,6 +205,6 @@ const AppContainer = ({isAuthorized, ...rest}) => {
     return <Navigator {...rest}/>;
 };
 
-let mapStateToProps = ({user}) => ({isAuthorized: !!user});
+let mapStateToProps = ({user}) => ({isAuthorized: !!user.token});
 
 export default connect(mapStateToProps)(AppContainer);

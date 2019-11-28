@@ -1,4 +1,4 @@
-import {USER_LOADED, REMOVE_ALL, REMOVE_ITEM, SET_COUNT} from '../actions/types';
+import {USER_LOADED, USER_LOG_OUT, REMOVE_ITEM, SET_COUNT} from '../actions/types';
 import {AsyncStorage} from 'react-native';
 
 const initialState = null;
@@ -9,6 +9,10 @@ export default (state = initialState, action) => {
             console.warn(action);
             AsyncStorage.setItem('token', action.payload);
             return {token: action.payload};
+        case USER_LOG_OUT:
+            console.warn(action);
+            AsyncStorage.removeItem('token');
+            return {token: ''};
         default:
             return state;
     }

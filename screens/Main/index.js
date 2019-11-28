@@ -10,7 +10,7 @@ import strings from '../../localization/strings';
 
 // qgl
 import {LOGIN_USER, VERIFY_SHOP} from '../../graphql/requests';
-import {userLoaded} from '../../actions/itemActions';
+import {userLoaded} from '../../actions/userActions';
 import {useLazyQuery} from '@apollo/react-hooks';
 
 

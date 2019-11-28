@@ -9,7 +9,7 @@ import colors from '../../constants/colors';
 import {LOGIN_USER} from '../../graphql/requests';
 import loginImage from '../../assets/image/login.png';
 import {connect} from 'react-redux';
-import {userLoaded} from '../../actions/itemActions';
+import {userLoaded} from '../../actions/userActions';
 
 let Login = ({navigation, dispatch}) => {
     const {navigate} = navigation;

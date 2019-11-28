@@ -1,11 +1,14 @@
 import React from 'react';
-import {View, Image, Text, StyleSheet} from 'react-native';
+import {View, Image, Text, StyleSheet, ScrollView} from 'react-native';
 import DrawerMenuItem from '../components/DrawerMenuItem';
 import colors from '../constants/colors';
 import strings from '../localization/strings';
-import {ScrollView} from 'react-navigation';
+import {connect} from 'react-redux';
+import Touchable from './Touchable';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import {userLogout} from '../actions/userActions';
 
-let DrawerContent = ({navigation}) => {
+let DrawerContent = ({navigation, dispatch}) => {
     const {navigate} = navigation;
 
     return (
@@ -46,7 +49,7 @@ let DrawerContent = ({navigation}) => {
                        }}
                 />
             </View>
-            <ScrollView >
+            <ScrollView>
                 <DrawerMenuItem
                     text={strings.homePage}
                     iconName="home"
@@ -75,6 +78,27 @@ let DrawerContent = ({navigation}) => {
                     onPress={() => navigate('Orders', {})}
                 />
             </ScrollView>
+
+            <View style={{
+                alignItems: 'center',
+            }}>
+                <Touchable onPress={() => {
+                    dispatch(userLogout());
+                    navigate('Main', {});
+                }}>
+                    <View style={{
+                        padding: 15,
+                        borderRadius: 30,
+                        backgroundColor: colors.white,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }}>
+                        <AntDesign name='logout' size={20} style={{
+                            color: colors.green,
+                        }}/>
+                    </View>
+                </Touchable>
+            </View>
         </View>
     );
 };
@@ -83,6 +107,7 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: colors.green,
         flex: 1,
+        paddingBottom: 40,
     },
     logoWrapper: {
         // flex:1,
@@ -110,4 +135,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default DrawerContent;
+export default connect(null)(DrawerContent);
