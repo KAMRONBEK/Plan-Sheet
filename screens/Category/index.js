@@ -1,10 +1,13 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, FlatList} from 'react-native';
 import Header from '../../components/Header';
 import ProductCard from '../../components/ProductCard';
 import LevelOneCategory from '../../components/LevelOneCategory';
 import LevelTwoCategory from '../../components/LevelTwoCategory';
 import LevelThreeCategory from '../../components/LevelThreeCategory';
+import {useLazyQuery, useQuery} from '@apollo/react-hooks';
+import {GET_ROOT_CATEGORY, GET_FIRST_CATEGORY} from '../../graphql/requests';
+import Touchable from '../../components/Touchable';
 
 const Category = ({navigation}) => {
     const levelOneList = [
@@ -46,13 +49,54 @@ const Category = ({navigation}) => {
     let [thirdDisplay, setThirdDisplay] = useState(false);
     let [thirdData, setThirdData] = useState([]);
     const {navigate} = navigation;
+
+    const [getFirstCategory, {loading: loadingFirst, data: dataFirst, error: errorFirst}] = useLazyQuery(GET_FIRST_CATEGORY);
+
+    const {loading, data, error} = useQuery(GET_ROOT_CATEGORY);
+
+    useEffect(() => {
+        console.warn('sukaaaaa');
+        if (data) {
+            console.warn(data);
+            console.warn(data.getRootCategory._id);
+            getFirstCategory({
+                variables: {
+                    parentCategoryID: data.getRootCategory._id,
+                },
+            });
+            console.warn('getfirsdt');
+        }
+    }, [data]);
+
+    if (loadingFirst) {
+        console.warn('loaduing first');
+    }
+    if (dataFirst) {
+        console.warn(dataFirst);
+    }
+    if (errorFirst) {
+        console.warn(error.message);
+    }
+
+
+
+    if (error) {
+        console.warn(error.message);
+    }
+
+    if (loading) {
+        return <View>
+            <Text>loading...</Text>
+        </View>;
+    }
+
     return (
 
         <View style={styles.container}>
             <View style={styles.left}>
                 <FlatList
-                    data={levelOneList}
-                    keyExtractor={item => item.id.toString()}
+                    data={dataFirst && dataFirst.getCategoryChilds || []}
+                    keyExtractor={item => item._id}
                     renderItem={({item}) => <LevelOneCategory item={item} navigation={navigation}
                                                               visibility={setSecondDisplay}
                                                               thirdVisibility={setThirdDisplay}/>}

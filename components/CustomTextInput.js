@@ -5,8 +5,8 @@ import {useCode} from 'react-native-reanimated';
 
 const CustomTextInput = ({title, numOfInput, constants}) => {
     let [text, setText] = useState('');
-    // let [count, setCount] = useState(new Array(numOfInput));
-    //
+    let [count, setCount] = useState(new Array(numOfInput));
+
     // // let array = new Array(numOfInput);
     // count.map((x, i) => {
     //     console.warn(i);

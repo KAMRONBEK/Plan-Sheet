@@ -12,7 +12,7 @@ const LevelOneCategory = ({item, visibility, thirdVisibility}) => {
         }}>
             <View style={styles.container}>
                 <MaterialIcons name='redeem' color={colors.paleGray} size={30}/>
-                <Text>{item.title}</Text>
+                <Text>{item.name}</Text>
             </View>
         </Touchable>
     );
