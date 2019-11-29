@@ -6,15 +6,19 @@ import colors from '../../constants/colors';
 import strings from '../../localization/strings';
 import Touchable from '../../components/Touchable';
 import RoundedButton from '../../components/RoundedButton';
+import {useLazyQuery} from '@apollo/react-hooks';
 
 const Product = ({navigation}) => {
     let [item, setItem] = useState({});
-    console.warn(item);
+
+    let [getProductData,{loading,data,error}]=useLazyQuery()
+
     useEffect(() => {
-        setItem(navigation.getParam('item'));
+        setItem(navigation.getParam('product_id'));
     }, []);
+
     const {navigate} = navigation;
-    // let [item, setItem] = useState(navigation.getParam(item));
+
     return (
         <View style={styles.container}>
             {/*<View style={{*/}
@@ -40,12 +44,12 @@ const Product = ({navigation}) => {
                         resizeMode: 'cover',
                     }}
                            source={{
-                               uri: item.image,
+                               // uri: item.image,
                            }}/>
                     <View style={styles.imageBunch}>
                         <View style={{
                             borderWidth: 1,
-                            borderColor:colors.borderGray
+                            borderColor: colors.borderGray,
                         }}>
                             <Image
                                 source={{
@@ -60,23 +64,7 @@ const Product = ({navigation}) => {
 
                         <View style={{
                             borderWidth: 1,
-                            borderColor:colors.borderGray
-                        }}>
-
-                            <Image
-                                source={{
-                                    uri: 'https://adnstudio.com/wp-content/uploads/2014/03/como-vender-un-producto-de-forma-efectiva-con-tecnicas-de-branding-branding-adnstudio.jpg',
-                                }}
-                                style={{
-                                    height: 55,
-                                    width: 55,
-                                    resizeMode: 'cover',
-                                }}/>
-                        </View>
-
-                        <View style={{
-                            borderWidth: 1,
-                            borderColor:colors.borderGray
+                            borderColor: colors.borderGray,
                         }}>
 
                             <Image
@@ -92,7 +80,23 @@ const Product = ({navigation}) => {
 
                         <View style={{
                             borderWidth: 1,
-                            borderColor:colors.borderGray
+                            borderColor: colors.borderGray,
+                        }}>
+
+                            <Image
+                                source={{
+                                    uri: 'https://adnstudio.com/wp-content/uploads/2014/03/como-vender-un-producto-de-forma-efectiva-con-tecnicas-de-branding-branding-adnstudio.jpg',
+                                }}
+                                style={{
+                                    height: 55,
+                                    width: 55,
+                                    resizeMode: 'cover',
+                                }}/>
+                        </View>
+
+                        <View style={{
+                            borderWidth: 1,
+                            borderColor: colors.borderGray,
                         }}>
 
                             <Image
@@ -111,12 +115,12 @@ const Product = ({navigation}) => {
                 <View style={styles.textContent}>
                     <View style={styles.titleWrapper}>
                         <Text style={styles.title}>
-                            {item.name}
+                            {/*{item.name}*/}
                         </Text>
                     </View>
                     <View style={styles.priceWrapper}>
                         <Text style={styles.priceText}>{strings.price}</Text>
-                        <Text style={styles.price}>{item.price} {strings.priceUnit}</Text>
+                        {/*<Text style={styles.price}>{item.price} {strings.priceUnit}</Text>*/}
                     </View>
                     <View style={styles.deliveryWrapper}>
                         <Text style={styles.deliveryText}>{strings.delivery}</Text>
@@ -128,11 +132,11 @@ const Product = ({navigation}) => {
                     </View>
                     <View style={styles.manufacturerWrapper}>
                         <Text style={styles.manufacturerText}>{strings.manufacturerName}</Text>
-                        <Text style={styles.manufacturer}>{item.manufacturer}</Text>
+                        {/*<Text style={styles.manufacturer}>{item.manufacturer}</Text>*/}
                     </View>
                     <View style={styles.textArea}>
                         <Text style={styles.description}>
-                            {item.description}
+                            {/*{item.description}*/}
                         </Text>
                         <Text style={styles.showMore}>
                             {strings.showMore}

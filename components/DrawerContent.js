@@ -11,6 +11,7 @@ import {userLogout} from '../actions/userActions';
 let DrawerContent = ({navigation, dispatch}) => {
     const {navigate} = navigation;
 
+
     return (
         <View style={styles.container}>
             <View style={styles.logoWrapper}>

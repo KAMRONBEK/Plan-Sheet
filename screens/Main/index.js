@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {Text, View, StyleSheet, FlatList, Alert} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {Text, View, StyleSheet, FlatList, Alert, ActivityIndicator} from 'react-native';
 import ProductCard from '../../components/ProductCard';
 import Header from '../../components/Header';
 import Modal from '../../components/Modal';
@@ -8,10 +8,12 @@ import ProductCardHistory from '../../components/ProductCardHistory';
 import Checkout from '../Checkout';
 import strings from '../../localization/strings';
 
+import {useQuery, useLazyQuery} from '@apollo/react-hooks';
+import {GET_MAIN_CATEGORY, GET_PRODUCT_UNDER_CATEGORY} from '../../graphql/requests';
+
 // qgl
 import {LOGIN_USER, VERIFY_SHOP} from '../../graphql/requests';
 import {userLoaded} from '../../actions/userActions';
-import {useLazyQuery} from '@apollo/react-hooks';
 
 
 let Main = ({navigation}) => {
@@ -138,54 +140,83 @@ let Main = ({navigation}) => {
     // alert
 
 
+    let {loading: loadingCategory, data: dataCategory, error: errorCategory} = useQuery(GET_MAIN_CATEGORY);
+    let [loadProducts, {loading, data, error}] = useLazyQuery(GET_PRODUCT_UNDER_CATEGORY);
+
+
+    if (errorCategory) {
+    }
+
+    useEffect(() => {
+        if (dataCategory) {
+            loadProducts({
+                variables: {
+                    category_id: dataCategory.verifyShop.category_id,
+                    pageSize: 10,
+                    next: 1,
+                },
+            });
+        }
+    }, [dataCategory]);
+
+
+
     return (
         <React.Fragment>
-            <View style={styles.container}>
-                <View style={styles.listWrapper}>
-                    <FlatList
-                        keyExtractor={item => item.id.toString()}
-                        data={ProductList}
-                        renderItem={({item}) => <ProductCard
-                            item={item}
-                            navigation={navigation}
-                            modalOn={setModalVisibility}
-                            setItem={setSelectedItemID}/>}
-                    />
-                </View>
-                {modalVisibility && <Modal isOpen={modalVisibility} navigation={navigation}>
-                    {/*<View style={{padding: 300, backgroundColor: colors.white}}>*/}
-
-                    {/*</View>*/}
-                    <Checkout item={ProductList[1]} navigation={navigation} modalOn={setModalVisibility}
-                              alertOn={setAlertVisibility}/>
-                </Modal>}
-                {
-                    alertVisibility && Alert.alert(
-                        'Alert Title',
-                        'My Alert Msg',
-                        [
-                            {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
-                            {
-                                text: 'Cancel',
-                                onPress: () => console.warn('Cancel Pressed'),
-                                style: 'cancel',
-                            },
-                            {text: 'OK', onPress: () => console.warn('OK Pressed')},
-                        ],
-                        {cancelable: false},
-                    )
-                }
-                {successVisibility && <Modal isOpen={successVisibility} navigation={navigation}>
-                    <View style={{
-                        padding: 80,
-                        backgroundColor: colors.white,
-                    }}>
-                        <Text style={{
-                            fontSize: 25,
-                        }}>{strings.orderSuccessful}</Text>
+            {loading ? (
+                <View style={{
+                    flex: 1,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                }}>
+                    <ActivityIndicator size="large" color="#00ff00"/>
+                </View>) : (
+                <View style={styles.container}>
+                    <View style={styles.listWrapper}>
+                        <FlatList
+                            keyExtractor={item => item.id}
+                            data={data && data.getProductBatchUnderCategory.products || []}
+                            renderItem={({item}) => <ProductCard
+                                item={item}
+                                navigation={navigation}
+                                modalOn={setModalVisibility}
+                                setItem={setSelectedItemID}/>}
+                        />
                     </View>
-                </Modal>}
-            </View>
+                    {modalVisibility && <Modal isOpen={modalVisibility} navigation={navigation}>
+                        {/*<View style={{padding: 300, backgroundColor: colors.white}}>*/}
+
+                        {/*</View>*/}
+                        <Checkout item={ProductList[1]} navigation={navigation} modalOn={setModalVisibility}
+                                  alertOn={setAlertVisibility}/>
+                    </Modal>}
+                    {
+                        alertVisibility && Alert.alert(
+                            'Alert Title',
+                            'My Alert Msg',
+                            [
+                                {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
+                                {
+                                    text: 'Cancel',
+                                    onPress: () => console.warn('Cancel Pressed'),
+                                    style: 'cancel',
+                                },
+                                {text: 'OK', onPress: () => console.warn('OK Pressed')},
+                            ],
+                            {cancelable: false},
+                        )
+                    }
+                    {successVisibility && <Modal isOpen={successVisibility} navigation={navigation}>
+                        <View style={{
+                            padding: 80,
+                            backgroundColor: colors.white,
+                        }}>
+                            <Text style={{
+                                fontSize: 25,
+                            }}>{strings.orderSuccessful}</Text>
+                        </View>
+                    </Modal>}
+                </View>)}
         </React.Fragment>
     );
 };

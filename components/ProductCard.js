@@ -17,7 +17,7 @@ const ProductCard = ({item, navigation, modalOn, setItem}) => {
                 style={styles.image}>
                 <Image
                     source={{
-                        uri: item.image,
+                        uri: item.images[0],
                     }}
                     style={{
                         flex: 1,
@@ -26,7 +26,7 @@ const ProductCard = ({item, navigation, modalOn, setItem}) => {
                 />
             </View>
             <View style={styles.content}>
-                <Touchable onPress={() => navigate('Product', {item: item})}>
+                <Touchable onPress={() => navigate('Product', {product_id: item._id})}>
                     <View style={styles.textWrap}>
                         {/*<Touchable>*/}
                         <Text
@@ -36,7 +36,7 @@ const ProductCard = ({item, navigation, modalOn, setItem}) => {
                             {item.name}
                         </Text>
                         <Text style={styles.price}>
-                            {item.minimumOrder} {strings.piece}
+                            {item.min_order} {item.count_measurement }
                         </Text>
                         <Text style={styles.price}>
                             {item.price} {strings.priceUnit}

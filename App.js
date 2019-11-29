@@ -9,7 +9,7 @@ import AppNavigator from './navigation/AppNavigator';
 import {ApolloProvider} from '@apollo/react-hooks';
 import strings from './localization/strings';
 import {AsyncStorage} from 'react-native';
-import {Provider} from 'react-redux';
+import {Provider, connect} from 'react-redux';
 import store from './store/configureStore';
 
 import Header from './components/Header';
@@ -23,38 +23,29 @@ import {InMemoryCache} from 'apollo-cache-inmemory';
 
 
 const App: () => React$Node = () => {
-    let [loading, setLoading] = useState(true);
 
-    let client = new ApolloClient({
-        uri: 'https://39990dea.ngrok.io/graphql',
-    });
+    let [loading, setLoading] = useState(true);
+    let [client, setClient] = useState(new ApolloClient({
+            uri: 'https://39990dea.ngrok.io/graphql',
+        }),
+    );
 
     let init = async () => {
         let token = await AsyncStorage.getItem('token');
         if (!!token) {
             store.dispatch(userLoaded(token));
-            client = new ApolloClient({
+            setClient(new ApolloClient({
+                uri: 'https://39990dea.ngrok.io/graphql',
                 request: (operation) => {
                     operation.setContext({
                         headers: {
-                            authorization: token ? `${token}` : '',
+                            authorization: token ? token : '',
                         },
                     });
                 },
-            });
-            console.warn('user with token created');
+            }));
         }
-        client = new ApolloClient({
-            request: (operation) => {
-                operation.setContext({
-                    header: {
-                        authorization: '',
-                    },
-                });
-            },
-        });
         setLoading(false);
-        console.warn(token);
     };
     useEffect(init, []);
 

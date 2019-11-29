@@ -4,13 +4,18 @@ import Touchable from './Touchable';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import colors from '../constants/colors';
 
-const LevelTwoCategory = ({item, visibility}) => {
+const LevelTwoCategory = ({item, visibility, setThirdCategory}) => {
     return (
         <Touchable onPress={() => {
             visibility(true);
+            setThirdCategory({
+                variables: {
+                    parentCategoryID: item._id,
+                },
+            });
         }}>
             <View style={styles.container}>
-                <Text>{item.title}</Text>
+                <Text>{item.name}</Text>
             </View>
         </Touchable>
 

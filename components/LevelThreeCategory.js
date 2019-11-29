@@ -7,7 +7,7 @@ const LevelThreeCategory = ({item, onPress}) => {
     return (
         <Touchable onPress={onPress}>
             <View style={styles.container}>
-                <Text>{item.title}</Text>
+                <Text>{item.name}</Text>
             </View>
         </Touchable>
 
