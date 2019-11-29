@@ -1,155 +1,163 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet, Image, ActivityIndicator} from 'react-native';
 import Header from '../../components/Header';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import colors from '../../constants/colors';
 import strings from '../../localization/strings';
 import Touchable from '../../components/Touchable';
 import RoundedButton from '../../components/RoundedButton';
-import {useLazyQuery} from '@apollo/react-hooks';
+import {useLazyQuery, useQuery} from '@apollo/react-hooks';
+import {GET_PRODUCT_DATA} from '../../graphql/requests';
 
 const Product = ({navigation}) => {
-    let [item, setItem] = useState({});
+    const productId = navigation.getParam('product_id');
+    let {loading, data, error} = useQuery(GET_PRODUCT_DATA, {
+        variables: {
+            product_id: productId,
+        },
+    });
 
-    let [getProductData,{loading,data,error}]=useLazyQuery()
+    let [productData, setProductData] = useState({});
 
     useEffect(() => {
-        setItem(navigation.getParam('product_id'));
-    }, []);
+        if (data) {
+            console.warn(data);
+            setProductData(data.getProductById);
+        }
+        console.warn('product by id');
+        console.warn(productData.images);
+    }, [productData]);
+
+
 
     const {navigate} = navigation;
 
     return (
-        <View style={styles.container}>
-            {/*<View style={{*/}
-            {/*    flexDirection: 'row',*/}
-            {/*    justifyContent: 'space-between',*/}
-            {/*}}>*/}
-            {/*    <Touchable onPress={() => navigation.goBack()}>*/}
-            {/*        <View style={{*/}
-            {/*            padding: 10,*/}
-            {/*            borderRadius: 10,*/}
-            {/*        }}>*/}
-            {/*            <MaterialIcons name='arrow-back' size={30} style={{color: colors.textGray}}/>*/}
-            {/*        </View>*/}
-            {/*    </Touchable>*/}
-            {/*    <MaterialIcons name='favorite-border' size={30} style={{color: colors.green}}/>*/}
-            {/*</View>*/}
-            <View style={styles.content}>
-                <View style={styles.imageWrapper}>
-                    <Image style={{
-                        borderRadius: 0,
-                        width: 260,
-                        height: 270,
-                        resizeMode: 'cover',
-                    }}
-                           source={{
-                               // uri: item.image,
-                           }}/>
-                    <View style={styles.imageBunch}>
-                        <View style={{
-                            borderWidth: 1,
-                            borderColor: colors.borderGray,
-                        }}>
-                            <Image
-                                source={{
-                                    uri: 'https://adnstudio.com/wp-content/uploads/2014/03/como-vender-un-producto-de-forma-efectiva-con-tecnicas-de-branding-branding-adnstudio.jpg',
-                                }}
-                                style={{
-                                    height: 55,
-                                    width: 55,
-                                    resizeMode: 'cover',
-                                }}/>
-                        </View>
-
-                        <View style={{
-                            borderWidth: 1,
-                            borderColor: colors.borderGray,
-                        }}>
-
-                            <Image
-                                source={{
-                                    uri: 'https://adnstudio.com/wp-content/uploads/2014/03/como-vender-un-producto-de-forma-efectiva-con-tecnicas-de-branding-branding-adnstudio.jpg',
-                                }}
-                                style={{
-                                    height: 55,
-                                    width: 55,
-                                    resizeMode: 'cover',
-                                }}/>
-                        </View>
-
-                        <View style={{
-                            borderWidth: 1,
-                            borderColor: colors.borderGray,
-                        }}>
-
-                            <Image
-                                source={{
-                                    uri: 'https://adnstudio.com/wp-content/uploads/2014/03/como-vender-un-producto-de-forma-efectiva-con-tecnicas-de-branding-branding-adnstudio.jpg',
-                                }}
-                                style={{
-                                    height: 55,
-                                    width: 55,
-                                    resizeMode: 'cover',
-                                }}/>
-                        </View>
-
-                        <View style={{
-                            borderWidth: 1,
-                            borderColor: colors.borderGray,
-                        }}>
-
-                            <Image
-                                source={{
-                                    uri: 'https://adnstudio.com/wp-content/uploads/2014/03/como-vender-un-producto-de-forma-efectiva-con-tecnicas-de-branding-branding-adnstudio.jpg',
-                                }}
-                                style={{
-                                    height: 55,
-                                    width: 55,
-                                    resizeMode: 'cover',
-                                }}/>
-                        </View>
-
-                    </View>
-                </View>
-                <View style={styles.textContent}>
-                    <View style={styles.titleWrapper}>
-                        <Text style={styles.title}>
-                            {/*{item.name}*/}
-                        </Text>
-                    </View>
-                    <View style={styles.priceWrapper}>
-                        <Text style={styles.priceText}>{strings.price}</Text>
-                        {/*<Text style={styles.price}>{item.price} {strings.priceUnit}</Text>*/}
-                    </View>
-                    <View style={styles.deliveryWrapper}>
-                        <Text style={styles.deliveryText}>{strings.delivery}</Text>
-                        <Text style={styles.delivery}>24-48 {strings.hours}</Text>
-                    </View>
-                    <View style={styles.paymentWrapper}>
-                        <Text style={styles.paymentText}>{strings.payment}</Text>
-                        <Text style={styles.payment}>24-48 {strings.hours}</Text>
-                    </View>
-                    <View style={styles.manufacturerWrapper}>
-                        <Text style={styles.manufacturerText}>{strings.manufacturerName}</Text>
-                        {/*<Text style={styles.manufacturer}>{item.manufacturer}</Text>*/}
-                    </View>
-                    <View style={styles.textArea}>
-                        <Text style={styles.description}>
-                            {/*{item.description}*/}
-                        </Text>
-                        <Text style={styles.showMore}>
-                            {strings.showMore}
-                        </Text>
-                    </View>
-                </View>
-            </View>
-            <View style={{
-                paddingHorizontal: 200,
+        <React.Fragment>
+            {loading ? (<View style={{
+                flex: 1,
+                justifyContent: 'center',
+                alignItems: 'center',
             }}>
-                <RoundedButton text={strings.ordering}/>
-            </View>
-        </View>
+                <ActivityIndicator size="large" color="#00ff00"/>
+            </View>) : (<View style={styles.container}>
+                    <View style={styles.content}>
+                        <View style={styles.imageWrapper}>
+                            <Image style={{
+                                borderRadius: 0,
+                                width: 260,
+                                height: 270,
+                                resizeMode: 'cover',
+                            }}
+                                   source={{
+                                       // uri: productData.images[0],
+                                   }}/>
+                            <View style={styles.imageBunch}>
+                                <View style={{
+                                    borderWidth: 1,
+                                    borderColor: colors.borderGray,
+                                }}>
+                                    <Image
+                                        source={{
+                                            uri: 'https://adnstudio.com/wp-content/uploads/2014/03/como-vender-un-producto-de-forma-efectiva-con-tecnicas-de-branding-branding-adnstudio.jpg',
+                                        }}
+                                        style={{
+                                            height: 55,
+                                            width: 55,
+                                            resizeMode: 'cover',
+                                        }}/>
+                                </View>
+
+                                <View style={{
+                                    borderWidth: 1,
+                                    borderColor: colors.borderGray,
+                                }}>
+
+                                    <Image
+                                        source={{
+                                            uri: 'https://adnstudio.com/wp-content/uploads/2014/03/como-vender-un-producto-de-forma-efectiva-con-tecnicas-de-branding-branding-adnstudio.jpg',
+                                        }}
+                                        style={{
+                                            height: 55,
+                                            width: 55,
+                                            resizeMode: 'cover',
+                                        }}/>
+                                </View>
+
+                                <View style={{
+                                    borderWidth: 1,
+                                    borderColor: colors.borderGray,
+                                }}>
+
+                                    <Image
+                                        source={{
+                                            uri: 'https://adnstudio.com/wp-content/uploads/2014/03/como-vender-un-producto-de-forma-efectiva-con-tecnicas-de-branding-branding-adnstudio.jpg',
+                                        }}
+                                        style={{
+                                            height: 55,
+                                            width: 55,
+                                            resizeMode: 'cover',
+                                        }}/>
+                                </View>
+
+                                <View style={{
+                                    borderWidth: 1,
+                                    borderColor: colors.borderGray,
+                                }}>
+
+                                    <Image
+                                        source={{
+                                            uri: 'https://adnstudio.com/wp-content/uploads/2014/03/como-vender-un-producto-de-forma-efectiva-con-tecnicas-de-branding-branding-adnstudio.jpg',
+                                        }}
+                                        style={{
+                                            height: 55,
+                                            width: 55,
+                                            resizeMode: 'cover',
+                                        }}/>
+                                </View>
+
+                            </View>
+                        </View>
+                        <View style={styles.textContent}>
+                            <View style={styles.titleWrapper}>
+                                <Text style={styles.title}>
+                                    {/*{item.name}*/}
+                                </Text>
+                            </View>
+                            <View style={styles.priceWrapper}>
+                                <Text style={styles.priceText}>{strings.price}</Text>
+                                {/*<Text style={styles.price}>{item.price} {strings.priceUnit}</Text>*/}
+                            </View>
+                            <View style={styles.deliveryWrapper}>
+                                <Text style={styles.deliveryText}>{strings.delivery}</Text>
+                                <Text style={styles.delivery}>24-48 {strings.hours}</Text>
+                            </View>
+                            <View style={styles.paymentWrapper}>
+                                <Text style={styles.paymentText}>{strings.payment}</Text>
+                                <Text style={styles.payment}>24-48 {strings.hours}</Text>
+                            </View>
+                            <View style={styles.manufacturerWrapper}>
+                                <Text style={styles.manufacturerText}>{strings.manufacturerName}</Text>
+                                {/*<Text style={styles.manufacturer}>{item.manufacturer}</Text>*/}
+                            </View>
+                            <View style={styles.textArea}>
+                                <Text style={styles.description}>
+                                    {/*{item.description}*/}
+                                </Text>
+                                <Text style={styles.showMore}>
+                                    {strings.showMore}
+                                </Text>
+                            </View>
+                        </View>
+                    </View>
+                    <View style={{
+                        paddingHorizontal: 200,
+                    }}>
+                        <RoundedButton text={strings.ordering}/>
+                    </View>
+                </View>
+            )}
+        </React.Fragment>
     );
 };
 

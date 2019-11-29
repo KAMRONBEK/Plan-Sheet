@@ -18,8 +18,7 @@ export let GET_ROOT_CATEGORY = gql`
 `;
 
 export let GET_MAIN_CATEGORY = gql`
-    query
-    verifyShop{
+    query {
         verifyShop {
             category_id
         }
@@ -54,43 +53,42 @@ export let GET_PRODUCT_UNDER_CATEGORY = gql`
 `;
 
 export let GET_PRODUCT_DATA = gql`
-    query{
-        wrapper{
-            getProductById(_id:"5ddbccad2d80f42c50e47d22"){
+    query
+    wrapper($product_id:String!){
+        getProductById(_id:$product_id){
+            _id
+            admin_id
+            manufacturer_id
+            category_path
+            name
+            short_desc
+            long_desc
+            tags
+            images
+            thumbnail
+            price
+            discount
+            stock{
                 _id
-                admin_id
-                manufacturer_id
-                category_path
-                name
-                short_desc
-                long_desc
-                tags
-                images
-                thumbnail
-                price
-                discount
-                stock{
-                    _id
-                }
-                count_measurement
-                min_order
-                max_order
-                weight
-                size{
-                    x
-                    y
-                    z
-                }
-                is_hot
-                is_promoting
-                approved
-                disapproval_message
-                viewed
-                loves
-                stars
             }
-
-        }    }
+            count_measurement
+            min_order
+            max_order
+            weight
+            size{
+                x
+                y
+                z
+            }
+            is_hot
+            is_promoting
+            approved
+            disapproval_message
+            viewed
+            loves
+            stars
+        }
+    }
 `;
 
 
