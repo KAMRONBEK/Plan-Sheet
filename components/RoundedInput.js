@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
 
     inputWrapper: {
         height: 70,
+        minWidth: 100,
         borderWidth: 0.8,
         borderRadius: 15,
         marginBottom: 10,

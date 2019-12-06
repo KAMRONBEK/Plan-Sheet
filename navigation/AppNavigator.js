@@ -21,6 +21,7 @@ import {createDrawerNavigator} from 'react-navigation-drawer';
 import DrawerContent from '../components/DrawerContent';
 import Product from '../screens/Product';
 import Header from '../components/Header';
+import Shelf from '../screens/Shelf';
 
 // const navigatorStack = createStackNavigator(
 //     {
@@ -114,6 +115,9 @@ const topTabNavigator = createMaterialTopTabNavigator(
                 tabBarLabel: strings.main,
             },
         },
+        Shelf:{
+            screen:Shelf,
+        },
         Category: {
             screen: Category,
             navigationOptions: {
@@ -205,6 +209,6 @@ const AppContainer = ({isAuthorized, ...rest}) => {
     return <Navigator {...rest}/>;
 };
 
-let mapStateToProps = ({user}) => ({isAuthorized: !!user.token});
+let mapStateToProps = ({user}) => ({isAuthorized: user && !!user.token});
 
 export default connect(mapStateToProps)(AppContainer);

@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {View, Text, StyleSheet, Image, FlatList} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, Text, StyleSheet, Image, FlatList, ActivityIndicator, Alert} from 'react-native';
 import colors from '../../constants/colors';
 import strings from '../../localization/strings';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -8,40 +8,51 @@ import ProductInCheckout from '../../components/ProductInCheckout';
 import ProductCard from '../../components/ProductCard';
 import RoundedButton from '../../components/RoundedButton';
 import FilledButton from '../../components/FilledButton';
+import {useQuery, useLazyQuery} from '@apollo/react-hooks';
+import {GET_PRODUCT_DATA} from '../../graphql/requests';
 
-let StockList = [
-    {
-        id: 1,
-        image: 'https://www.kitchenstuffplus.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/9/3/93102_40000_artland-dairy-clear-milk-bottle-drinking-glass-set-of-8.jpg',
-        stockTitle: 'qora milk',
-        selectedAmount: 0,
-        price: 12000,
-    }
-    , {
-        id: 2, image: 'https://static.toiimg.com/photo/67975826.cms',
-        stockTitle: 'zur milk',
-        selectedAmount: 0,
-        price: 15000,
-    }, {
-        id: 3,
-        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLYXBw9qNRBgxsFFOcanxQjp9Lqi_psBxJHgCk6Zocd-TnwKqnuw&s',
-        stockTitle: 'mevali milk',
-        selectedAmount: 0,
-        price: 18000,
-    }, {
-        id: 4,
-        image: 'http://lemon.press/wp-content/uploads/2015/03/dsc_5694-2.jpg',
-        stockTitle: 'mevasiz milk',
-        selectedAmount: 0,
-        price: 17000,
-    },
-];
 
-const Checkout = ({navigation, item, modalOn, alertOn}) => {
+const Checkout = ({navigation, item, modalOn}) => {
 
+    let [stockList, setStockList] = useState([]);
     let [selectedType, setSelectedType] = useState(0);
     let [totalCount, setTotalCount] = useState(0);
     let [totalPrice, setTotalPrice] = useState(0);
+
+    let [getProductData, {loading, data, error}] = useLazyQuery(GET_PRODUCT_DATA);
+    useEffect(() => {
+        if (!!item) {
+            getProductData({
+                variables: {
+                    product_id: item._id,
+                },
+            });
+        }
+        if (data) {
+            console.warn('getProductById');
+            console.warn(data);
+            console.warn(data.getProductById);
+            setStockList(data.getProductById.stock);
+        }
+    }, [data]);
+
+    const alerter = () => {
+        Alert.alert(
+            'Alert Title',
+            'My Alert Msg',
+            [
+                {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
+                {
+                    text: 'Cancel',
+                    onPress: () => console.warn('Cancel Pressed'),
+                    style: 'cancel',
+                },
+                {text: 'OK', onPress: () => console.warn('OK Pressed')},
+            ],
+            {cancelable: false},
+        );
+    };
+
 
     return (
         <View style={styles.container}>
@@ -52,13 +63,13 @@ const Checkout = ({navigation, item, modalOn, alertOn}) => {
                         resizeMode: 'cover',
                     }}
                            source={{
-                               uri: item.image,
+                               uri: item && item.images[0],
                            }}/>
                 </View>
                 <View style={styles.textWrapper}>
-                    <Text style={styles.title}>{item.name}</Text>
-                    <Text style={styles.text}>{strings.minimumOrder} {item.minimumOrder}</Text>
-                    <Text style={styles.price}>{item.price} {strings.priceUnit}</Text>
+                    <Text style={styles.title}>{item && item.name}</Text>
+                    <Text style={styles.text}>{strings.minimumOrder} {item && item.min_order}</Text>
+                    <Text style={styles.price}>{item && item.price} {strings.priceUnit}</Text>
                 </View>
                 <View style={{
                     marginRight: -10,
@@ -78,23 +89,31 @@ const Checkout = ({navigation, item, modalOn, alertOn}) => {
                     </Text>
                 </View>
                 <View>
-                    <FlatList
-                        style={{
-                            height: 300,
-                        }}
-                        data={StockList}
-                        keyExtractor={item => item.id.toString()}
-                        renderItem={({item}) => <ProductInCheckout
-                            item={item}
-                            setCount={setTotalCount}
-                            count={totalCount}
-                            setTypeCount={setSelectedType}
-                            typeCount={selectedType}
-                            setPrice={setTotalPrice}
-                            price={totalPrice}
-                        />}
+                    {loading ? (
+                        <View style={{
+                            flex: 1,
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                        }}>
+                            <ActivityIndicator size="large" color="#00ff00"/>
+                        </View>) : (
+                        <FlatList
+                            style={{
+                                height: 300,
+                            }}
+                            data={stockList}
+                            keyExtractor={item => item._id}
+                            renderItem={({item}) => <ProductInCheckout
+                                item={item}
+                                setCount={setTotalCount}
+                                count={totalCount}
+                                setTypeCount={setSelectedType}
+                                typeCount={selectedType}
+                                setPrice={setTotalPrice}
+                                price={totalPrice}
+                            />}
 
-                    />
+                        />)}
                 </View>
                 <View style={styles.bottomWrapper}>
                     <View style={styles.overall}>

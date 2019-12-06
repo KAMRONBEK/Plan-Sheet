@@ -5,7 +5,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import colors from '../constants/colors';
 import Touchable from './Touchable';
 
-const ProductInCheckout = ({item, setCount, count, setTypeCount, typeCount, setPrice, price,addItem}) => {
+const ProductInCheckout = ({item, setCount, count, setTypeCount, typeCount, setPrice, price, addItem}) => {
     let [selected, setSelected] = useState(0);
     let totalCount = count;
     let selectedType = typeCount;
@@ -26,7 +26,7 @@ const ProductInCheckout = ({item, setCount, count, setTypeCount, typeCount, setP
                 />
             </View>
             <View style={styles.textWrapper}>
-                <Text>{item.stockTitle}</Text>
+                <Text>{item.title}</Text>
                 <Text>{item.price} {strings.priceUnit}</Text>
             </View>
             <View>

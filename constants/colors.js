@@ -1,5 +1,6 @@
 export default {
     white: '#ffffff',
+    // green: '#',
     green: '#50CC69',
     transparentGreen:"rgb(255,166,0)",
     paleYellow: 'rgba(255,255,0,0.3)',

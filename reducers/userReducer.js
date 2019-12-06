@@ -12,7 +12,7 @@ export default (state = initialState, action) => {
         case USER_LOG_OUT:
             console.warn(action);
             AsyncStorage.removeItem('token');
-            return {token: ''};
+            return {token: null};
         default:
             return state;
     }

@@ -19,6 +19,11 @@ let Login = ({navigation, dispatch}) => {
 
     const [loginUser, {loading, data, error}] = useLazyQuery(LOGIN_USER);
 
+    if (error) {
+        console.warn('begin');
+        console.warn(error.message);
+        console.warn('end');
+    }
     if (data) {
         console.warn(data);
         dispatch(userLoaded(data.loginShop));

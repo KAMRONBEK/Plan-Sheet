@@ -46,6 +46,8 @@ export default new LocalizedStrings({
         enterCardNumber: 'Karta raqamini kiriting',
         expireDate: 'Amal qilish muddati',
         sendConfirmationNumber: 'Tasdiqlash kodini yuborish',
+        cash: 'Naxt',
+        credit: 'Kredit kartasi',
     },
     ru: {
         main: 'Главный',
@@ -92,6 +94,8 @@ export default new LocalizedStrings({
         enterCardNumber: 'Введите номер карты',
         expireDate: 'Годен до',
         sendConfirmationNumber: 'Отправить номер подтверждения',
+        cash: 'Наличные',
+        credit: 'Кредитная карта',
     },
     angliskiy: {
         main: 'Main',
@@ -138,5 +142,7 @@ export default new LocalizedStrings({
         enterCardNumber: 'Enter card number',
         expireDate: 'Expire date',
         sendConfirmationNumber: 'Send confirmation number',
+        cash: 'Cash',
+        credit: 'Credit card',
     },
 });

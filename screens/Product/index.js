@@ -18,15 +18,19 @@ const Product = ({navigation}) => {
     });
 
     let [productData, setProductData] = useState({});
+    let [images, setImages] = useState([]);
+    let [stocks, setStocks] = useState([]);
+    let [manufacturerData, setManufacturerData] = useState({});
 
     useEffect(() => {
         if (data) {
             console.warn(data);
             setProductData(data.getProductById);
+            setImages(data.getProductById.images);
+            setStocks(data.getProductById.stock);
+            setManufacturerData(data.getProductById.manufacturer_id);
         }
-        console.warn('product by id');
-        console.warn(productData.images);
-    }, [productData]);
+    }, [data]);
 
 
 
@@ -43,90 +47,66 @@ const Product = ({navigation}) => {
             </View>) : (<View style={styles.container}>
                     <View style={styles.content}>
                         <View style={styles.imageWrapper}>
-                            <Image style={{
+                            {images && images.length > 0 ? (<Image style={{
                                 borderRadius: 0,
                                 width: 260,
                                 height: 270,
                                 resizeMode: 'cover',
                             }}
-                                   source={{
-                                       // uri: productData.images[0],
-                                   }}/>
+                                                                   source={{
+                                                                       uri: images && images[0],
+                                                                   }}/>) : (
+                                <View style={{
+                                    borderRadius: 0,
+                                    width: 260,
+                                    height: 270,
+                                    resizeMode: 'cover',
+                                }}>
+                                    <View style={{
+                                        flex: 1,
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                    }}>
+                                        <ActivityIndicator size="large" color="#00ff00"/>
+                                    </View>
+                                </View>
+                            )}
                             <View style={styles.imageBunch}>
-                                <View style={{
-                                    borderWidth: 1,
-                                    borderColor: colors.borderGray,
-                                }}>
-                                    <Image
-                                        source={{
-                                            uri: 'https://adnstudio.com/wp-content/uploads/2014/03/como-vender-un-producto-de-forma-efectiva-con-tecnicas-de-branding-branding-adnstudio.jpg',
-                                        }}
-                                        style={{
-                                            height: 55,
-                                            width: 55,
-                                            resizeMode: 'cover',
-                                        }}/>
-                                </View>
-
-                                <View style={{
-                                    borderWidth: 1,
-                                    borderColor: colors.borderGray,
-                                }}>
-
-                                    <Image
-                                        source={{
-                                            uri: 'https://adnstudio.com/wp-content/uploads/2014/03/como-vender-un-producto-de-forma-efectiva-con-tecnicas-de-branding-branding-adnstudio.jpg',
-                                        }}
-                                        style={{
-                                            height: 55,
-                                            width: 55,
-                                            resizeMode: 'cover',
-                                        }}/>
-                                </View>
-
-                                <View style={{
-                                    borderWidth: 1,
-                                    borderColor: colors.borderGray,
-                                }}>
-
-                                    <Image
-                                        source={{
-                                            uri: 'https://adnstudio.com/wp-content/uploads/2014/03/como-vender-un-producto-de-forma-efectiva-con-tecnicas-de-branding-branding-adnstudio.jpg',
-                                        }}
-                                        style={{
-                                            height: 55,
-                                            width: 55,
-                                            resizeMode: 'cover',
-                                        }}/>
-                                </View>
-
-                                <View style={{
-                                    borderWidth: 1,
-                                    borderColor: colors.borderGray,
-                                }}>
-
-                                    <Image
-                                        source={{
-                                            uri: 'https://adnstudio.com/wp-content/uploads/2014/03/como-vender-un-producto-de-forma-efectiva-con-tecnicas-de-branding-branding-adnstudio.jpg',
-                                        }}
-                                        style={{
-                                            height: 55,
-                                            width: 55,
-                                            resizeMode: 'cover',
-                                        }}/>
-                                </View>
-
+                                {images && images.length > 0 ? (images.map((image, index) => {
+                                    return (
+                                        <View
+                                            key={index}
+                                            style={{
+                                                borderWidth: 1,
+                                                marginRight: 5,
+                                                borderColor: colors.borderGray,
+                                            }}>
+                                            <Image
+                                                key={index}
+                                                source={{
+                                                    uri: image,
+                                                }}
+                                                style={{
+                                                    height: 55,
+                                                    width: 55,
+                                                    resizeMode: 'cover',
+                                                }}/>
+                                        </View>
+                                    );
+                                })) : (
+                                    <Image/>
+                                )}
                             </View>
                         </View>
                         <View style={styles.textContent}>
                             <View style={styles.titleWrapper}>
                                 <Text style={styles.title}>
-                                    {/*{item.name}*/}
+                                    {productData.name}
                                 </Text>
                             </View>
                             <View style={styles.priceWrapper}>
                                 <Text style={styles.priceText}>{strings.price}</Text>
-                                {/*<Text style={styles.price}>{item.price} {strings.priceUnit}</Text>*/}
+                                <Text style={styles.price}>{productData.price} {strings.priceUnit}</Text>
                             </View>
                             <View style={styles.deliveryWrapper}>
                                 <Text style={styles.deliveryText}>{strings.delivery}</Text>
@@ -134,15 +114,17 @@ const Product = ({navigation}) => {
                             </View>
                             <View style={styles.paymentWrapper}>
                                 <Text style={styles.paymentText}>{strings.payment}</Text>
-                                <Text style={styles.payment}>24-48 {strings.hours}</Text>
+                                <Text style={styles.payment}>{strings.cash} / {strings.credit}</Text>
                             </View>
                             <View style={styles.manufacturerWrapper}>
                                 <Text style={styles.manufacturerText}>{strings.manufacturerName}</Text>
-                                {/*<Text style={styles.manufacturer}>{item.manufacturer}</Text>*/}
+                                <Text
+                                    style={styles.manufacturer}>{!!manufacturerData && manufacturerData.legal_name}
+                                </Text>
                             </View>
                             <View style={styles.textArea}>
                                 <Text style={styles.description}>
-                                    {/*{item.description}*/}
+                                    {productData.short_desc}
                                 </Text>
                                 <Text style={styles.showMore}>
                                     {strings.showMore}
@@ -178,7 +160,7 @@ const styles = StyleSheet.create({
     imageBunch: {
         flexDirection: 'row',
         paddingVertical: 20,
-        justifyContent: 'space-between',
+        justifyContent: 'flex-start',
     },
     textContent: {
         flex: 1,

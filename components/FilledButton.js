@@ -8,9 +8,9 @@ const FilledButton = ({text, invert}) => {
         <React.Fragment>
             {invert ? (
                 <View style={[styles.container, {
-                    backgroundColor:colors.grayish,
+                    backgroundColor: colors.grayish,
                     borderRadius: 20,
-                    elevation:1.5
+                    elevation: 1.5,
                 }]}>
                     <Text style={[styles.buttonText, {
                         color: colors.green,

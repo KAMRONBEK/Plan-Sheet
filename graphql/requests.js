@@ -21,6 +21,7 @@ export let GET_MAIN_CATEGORY = gql`
     query {
         verifyShop {
             category_id
+            username
         }
     }
 `;
@@ -58,7 +59,13 @@ export let GET_PRODUCT_DATA = gql`
         getProductById(_id:$product_id){
             _id
             admin_id
-            manufacturer_id
+            manufacturer_id{
+                _id
+                legal_name
+                brand_name
+                brand_picture
+                bussiness_type
+            }
             category_path
             name
             short_desc
@@ -70,6 +77,13 @@ export let GET_PRODUCT_DATA = gql`
             discount
             stock{
                 _id
+                title
+                value
+                price
+                discount
+                image
+                count
+                sold
             }
             count_measurement
             min_order

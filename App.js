@@ -34,6 +34,7 @@ const App: () => React$Node = () => {
         let token = await AsyncStorage.getItem('token');
         if (!!token) {
             store.dispatch(userLoaded(token));
+            console.warn(store);
             setClient(new ApolloClient({
                 uri: 'https://39990dea.ngrok.io/graphql',
                 request: (operation) => {
@@ -44,6 +45,7 @@ const App: () => React$Node = () => {
                     });
                 },
             }));
+            console.log(token);
         }
         setLoading(false);
     };

@@ -19,9 +19,8 @@ import {userLoaded} from '../../actions/userActions';
 let Main = ({navigation}) => {
 
     let [modalVisibility, setModalVisibility] = useState(false);
-    let [selectedItemId, setSelectedItemID] = useState(-1);
+    let [selectedItemId, setSelectedItemID] = useState('');
     let [successVisibility, setSuccessVisibility] = useState(false);
-    let [alertVisibility, setAlertVisibility] = useState(false);
 
     // const navigate = {navigation};
     // const [verifyUser, {loading, data, error}] = useLazyQuery(VERIFY_SHOP);
@@ -36,12 +35,15 @@ let Main = ({navigation}) => {
     let {loading: loadingCategory, data: dataCategory, error: errorCategory} = useQuery(GET_MAIN_CATEGORY);
     let [loadProducts, {loading, data, error}] = useLazyQuery(GET_PRODUCT_UNDER_CATEGORY);
 
-
-    if (errorCategory) {
+    if (loading) {
+        console.warn('laoding');
+    }
+    if (!!dataCategory) {
+        console.warn(dataCategory);
     }
 
     useEffect(() => {
-        if (dataCategory) {
+        if (!!dataCategory) {
             loadProducts({
                 variables: {
                     category_id: dataCategory.verifyShop.category_id,
@@ -51,8 +53,6 @@ let Main = ({navigation}) => {
             });
         }
     }, [dataCategory]);
-
-
 
     return (
         <React.Fragment>
@@ -76,29 +76,21 @@ let Main = ({navigation}) => {
                                 setItem={setSelectedItemID}/>}
                         />
                     </View>
-                    {modalVisibility && <Modal isOpen={modalVisibility} navigation={navigation}>
+                    {selectedItemId !== '' && modalVisibility &&
+                    <Modal isOpen={modalVisibility} navigation={navigation}>
                         {/*<View style={{padding: 300, backgroundColor: colors.white}}>*/}
 
                         {/*</View>*/}
-                        <Checkout item={ProductList[1]} navigation={navigation} modalOn={setModalVisibility}
-                                  alertOn={setAlertVisibility}/>
+                        <Checkout item={data.getProductBatchUnderCategory.products.find((product, index) => {
+                            if (product._id === selectedItemId) {
+                                console.warn('this is selected');
+                                console.warn(product);
+                                return product;
+                            }
+                        })}
+                                  navigation={navigation} modalOn={setModalVisibility}
+                        />
                     </Modal>}
-                    {
-                        alertVisibility && Alert.alert(
-                            'Alert Title',
-                            'My Alert Msg',
-                            [
-                                {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
-                                {
-                                    text: 'Cancel',
-                                    onPress: () => console.warn('Cancel Pressed'),
-                                    style: 'cancel',
-                                },
-                                {text: 'OK', onPress: () => console.warn('OK Pressed')},
-                            ],
-                            {cancelable: false},
-                        )
-                    }
                     {successVisibility && <Modal isOpen={successVisibility} navigation={navigation}>
                         <View style={{
                             padding: 80,

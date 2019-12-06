@@ -3,9 +3,12 @@ import {View, Text, StyleSheet} from 'react-native';
 import Touchable from './Touchable';
 import colors from '../constants/colors';
 
-const LevelThreeCategory = ({item, onPress}) => {
+const LevelThreeCategory = ({item, navigation}) => {
+    const {navigate} = navigation;
     return (
-        <Touchable onPress={onPress}>
+        <Touchable onPress={() => {
+            navigate('Shelf', {category_id: item._id});
+        }}>
             <View style={styles.container}>
                 <Text>{item.name}</Text>
             </View>

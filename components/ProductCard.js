@@ -45,7 +45,7 @@ const ProductCard = ({item, navigation, modalOn, setItem}) => {
                 </Touchable>
                 <Touchable onPress={() => {
                     modalOn(true);
-                    setItem(item.id);
+                    setItem(item._id);
                 }
                 }>
                     <View style={styles.buttonWrapper}>
