@@ -21,7 +21,19 @@ export let GET_MAIN_CATEGORY = gql`
     query {
         verifyShop {
             category_id
-            username
+        }
+    }
+`;
+
+export let GET_SHOP_CATEGORY = gql`
+    query {
+        verifyShop {
+            _id
+            admin_id
+            purchase_balance
+            balance
+            legal_name
+            email
         }
     }
 `;

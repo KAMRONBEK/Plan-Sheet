@@ -32,17 +32,15 @@ let Main = ({navigation}) => {
     // alert
 
 
-    let {loading: loadingCategory, data: dataCategory, error: errorCategory} = useQuery(GET_MAIN_CATEGORY);
+    let [loadCategoryID, {loading: loadingCategory, data: dataCategory, error: errorCategory}] = useLazyQuery(GET_MAIN_CATEGORY);
     let [loadProducts, {loading, data, error}] = useLazyQuery(GET_PRODUCT_UNDER_CATEGORY);
 
-    if (loading) {
-        console.warn('laoding');
-    }
     if (!!dataCategory) {
         console.warn(dataCategory);
     }
 
     useEffect(() => {
+        loadCategoryID();
         if (!!dataCategory) {
             loadProducts({
                 variables: {

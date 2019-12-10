@@ -4,12 +4,29 @@ import strings from '../../localization/strings';
 import colors from '../../constants/colors';
 import CustomTextInput from '../../components/CustomTextInput';
 import DateInput from '../../components/DateInput';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import Touchable from '../../components/Touchable';
 
-const Payment = () => {
+const Payment = ({modalOn}) => {
     return (
         <View style={styles.container}>
             <View style={styles.titleWrapper}>
                 <Text style={styles.title}>{strings.fillBalance}</Text>
+                <Touchable onPress={() => {
+                    modalOn(false);
+                }}>
+                    <View style={{
+                        padding: 5,
+                        backgroundColor: colors.borderGray,
+                        borderRadius: 20,
+                        top: -10,
+                        right: -10,
+                    }}>
+                        <MaterialIcons name='close' size={20} style={{
+                            color: colors.textGray,
+                        }}/>
+                    </View>
+                </Touchable>
             </View>
             <View style={{
                 flexDirection: 'row',
@@ -49,6 +66,8 @@ const styles = StyleSheet.create({
         backgroundColor: colors.white,
     },
     titleWrapper: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
         padding: 5,
         borderRadius: 3,
         marginBottom: 10,

@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {View, Text, FlatList, StyleSheet} from 'react-native';
+import React, {useState,useCallback} from 'react';
+import {View, Text, FlatList, ScrollView, StyleSheet, RefreshControl} from 'react-native';
 import ProductCardHistory from '../../components/ProductCardHistory';
 import Header from '../../components/Header';
 import Modal from '../../components/Modal';
@@ -169,19 +169,33 @@ const History = ({navigation}) => {
         },
     ];
 
+    const [refreshing, setRefreshing] = useState(false);
+
+    const wait = (timeout) => {
+        return new Promise(resolve => {
+            setTimeout(resolve, timeout);
+        });
+    };
+
+    const onRefresh = useCallback(() => {
+        setRefreshing(true);
+
+        wait(2000).then(() => setRefreshing(false));
+    }, [refreshing]);
 
     return (
-        <View style={styles.container}>
-
+        <ScrollView style={styles.container} refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>
+        }>
             <View style={styles.listWrapper}>
                 <FlatList
                     keyExtractor={item => item.id.toString()}
                     data={ProductList}
-                    renderItem={({item}) => <ProductCardHistory item={item}  />}
+                    renderItem={({item}) => <ProductCardHistory item={item}/>}
                 />
             </View>
 
-        </View>
+        </ScrollView>
     );
 };
 

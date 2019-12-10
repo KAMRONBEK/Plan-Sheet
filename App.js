@@ -37,6 +37,7 @@ const App: () => React$Node = () => {
             console.warn(store);
             setClient(new ApolloClient({
                 uri: 'https://39990dea.ngrok.io/graphql',
+                // uri: 'https://yuz1.herokuapp.com/graphql',
                 request: (operation) => {
                     operation.setContext({
                         headers: {

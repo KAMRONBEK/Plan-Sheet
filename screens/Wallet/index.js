@@ -43,6 +43,7 @@ const usageList = [
 ];
 
 
+
 const Wallet = ({navigation}) => {
     let [paymentVisibility, setPaymentVisibility] = useState(false);
 
@@ -202,7 +203,7 @@ const Wallet = ({navigation}) => {
             {paymentVisibility && <Modal isOpen={paymentVisibility} navigation={navigation}>
                 {/*<View style={{padding: 300, backgroundColor: colors.white}}>*/}
                 {/*</View>*/}
-                <Payment/>
+                <Payment modalOn={setPaymentVisibility}/>
             </Modal>}
         </React.Fragment>
     );

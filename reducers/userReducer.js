@@ -11,7 +11,7 @@ export default (state = initialState, action) => {
             return {token: action.payload};
         case USER_LOG_OUT:
             console.warn(action);
-            AsyncStorage.removeItem('token');
+            AsyncStorage.setItem('token', '');
             return {token: null};
         default:
             return state;

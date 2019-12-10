@@ -41,16 +41,26 @@ const Checkout = ({navigation, item, modalOn}) => {
             'Alert Title',
             'My Alert Msg',
             [
-                {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
+
                 {
-                    text: 'Cancel',
+                    text: strings.cancel,
                     onPress: () => console.warn('Cancel Pressed'),
                     style: 'cancel',
                 },
-                {text: 'OK', onPress: () => console.warn('OK Pressed')},
+                {
+                    text: strings.ordering,
+                    onPress: () => {
+                        completeOrder();
+                        modalOn(false);
+                    },
+                    style:'destructive'
+                },
             ],
             {cancelable: false},
         );
+    };
+    const completeOrder = () => {
+        console.warn('ordered');
     };
 
 
@@ -144,8 +154,8 @@ const Checkout = ({navigation, item, modalOn}) => {
                     </View>
                     <View style={styles.buttonWrapper}>
                         <Touchable onPress={() => {
-                            alertOn(true);
                             console.warn('some');
+                            alerter();
                         }}>
                             <View>
                                 <FilledButton text={strings.ordering}/>

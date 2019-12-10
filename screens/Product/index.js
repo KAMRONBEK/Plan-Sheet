@@ -8,6 +8,7 @@ import Touchable from '../../components/Touchable';
 import RoundedButton from '../../components/RoundedButton';
 import {useLazyQuery, useQuery} from '@apollo/react-hooks';
 import {GET_PRODUCT_DATA} from '../../graphql/requests';
+import FilledButton from '../../components/FilledButton';
 
 const Product = ({navigation}) => {
     const productId = navigation.getParam('product_id');
@@ -19,6 +20,7 @@ const Product = ({navigation}) => {
 
     let [productData, setProductData] = useState({});
     let [images, setImages] = useState([]);
+    let [selectedImage, setSelectedImage] = useState(0);
     let [stocks, setStocks] = useState([]);
     let [manufacturerData, setManufacturerData] = useState({});
 
@@ -44,18 +46,20 @@ const Product = ({navigation}) => {
                 alignItems: 'center',
             }}>
                 <ActivityIndicator size="large" color="#00ff00"/>
-            </View>) : (<View style={styles.container}>
+            </View>) : (
+                <View style={styles.container}>
                     <View style={styles.content}>
                         <View style={styles.imageWrapper}>
-                            {images && images.length > 0 ? (<Image style={{
-                                borderRadius: 0,
-                                width: 260,
-                                height: 270,
-                                resizeMode: 'cover',
-                            }}
-                                                                   source={{
-                                                                       uri: images && images[0],
-                                                                   }}/>) : (
+                            {images && images.length > 0 ? (
+                                <Image style={{
+                                    borderRadius: 0,
+                                    width: 260,
+                                    height: 270,
+                                    resizeMode: 'cover',
+                                }}
+                                       source={{
+                                           uri: images && images[selectedImage],
+                                       }}/>) : (
                                 <View style={{
                                     borderRadius: 0,
                                     width: 260,
@@ -80,17 +84,25 @@ const Product = ({navigation}) => {
                                                 borderWidth: 1,
                                                 marginRight: 5,
                                                 borderColor: colors.borderGray,
+                                                marginBottom: 5,
+                                            }}
+                                        >
+                                            <Touchable onPress={() => {
+                                                setSelectedImage(index);
                                             }}>
-                                            <Image
-                                                key={index}
-                                                source={{
-                                                    uri: image,
-                                                }}
-                                                style={{
-                                                    height: 55,
-                                                    width: 55,
-                                                    resizeMode: 'cover',
-                                                }}/>
+                                                <Image
+                                                    key={index}
+                                                    source={{
+                                                        uri: image,
+                                                    }}
+                                                    style={{
+                                                        height: 55,
+                                                        width: 55,
+                                                        resizeMode: 'cover',
+                                                    }}
+
+                                                />
+                                            </Touchable>
                                         </View>
                                     );
                                 })) : (
@@ -133,9 +145,10 @@ const Product = ({navigation}) => {
                         </View>
                     </View>
                     <View style={{
-                        paddingHorizontal: 200,
+                        marginBottom: 30,
+                        alignItems: 'center',
                     }}>
-                        <RoundedButton text={strings.ordering}/>
+                        <FilledButton text={strings.ordering}/>
                     </View>
                 </View>
             )}
@@ -148,6 +161,7 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingVertical: 20,
         paddingHorizontal: 40,
+        justifyContent: 'space-between',
     },
     content: {
         flexDirection: 'row',
@@ -158,6 +172,9 @@ const styles = StyleSheet.create({
         borderRadius: 0,
     },
     imageBunch: {
+        width: 248,
+        flexWrap: 'wrap',
+        overflow: 'hidden',
         flexDirection: 'row',
         paddingVertical: 20,
         justifyContent: 'flex-start',
