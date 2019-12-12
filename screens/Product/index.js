@@ -9,6 +9,8 @@ import RoundedButton from '../../components/RoundedButton';
 import {useLazyQuery, useQuery} from '@apollo/react-hooks';
 import {GET_PRODUCT_DATA} from '../../graphql/requests';
 import FilledButton from '../../components/FilledButton';
+import Modal from '../../components/Modal';
+import Checkout from '../Checkout';
 
 const Product = ({navigation}) => {
     const productId = navigation.getParam('product_id');
@@ -23,6 +25,9 @@ const Product = ({navigation}) => {
     let [selectedImage, setSelectedImage] = useState(0);
     let [stocks, setStocks] = useState([]);
     let [manufacturerData, setManufacturerData] = useState({});
+
+    let [modalVisibility, setModalVisibility] = useState(false);
+    let [paragraphOn, setParagraphOn] = useState(false);
 
     useEffect(() => {
         if (data) {
@@ -136,11 +141,15 @@ const Product = ({navigation}) => {
                             </View>
                             <View style={styles.textArea}>
                                 <Text style={styles.description}>
-                                    {productData.short_desc}
+                                    {!paragraphOn ? productData.short_desc : productData.long_desc}
                                 </Text>
-                                <Text style={styles.showMore}>
-                                    {strings.showMore}
-                                </Text>
+                                <Touchable onPress={() => {
+                                    setParagraphOn(!paragraphOn);
+                                }}>
+                                    <Text style={styles.showMore}>
+                                        {strings.showMore}
+                                    </Text>
+                                </Touchable>
                             </View>
                         </View>
                     </View>
@@ -148,9 +157,25 @@ const Product = ({navigation}) => {
                         marginBottom: 30,
                         alignItems: 'center',
                     }}>
-                        <FilledButton text={strings.ordering}/>
+                        <Touchable onPress={() => {
+                            setModalVisibility(true);
+                        }}>
+                            <View>
+                                <FilledButton text={strings.ordering}/>
+                            </View>
+                        </Touchable>
                     </View>
+                    {productId !== '' && modalVisibility &&
+                    <Modal isOpen={modalVisibility} navigation={navigation}>
+                        {/*<View style={{padding: 300, backgroundColor: colors.white}}>*/}
+
+                        {/*</View>*/}
+                        <Checkout item={productData}
+                                  navigation={navigation} modalOn={setModalVisibility}
+                        />
+                    </Modal>}
                 </View>
+
             )}
         </React.Fragment>
     );

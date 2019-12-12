@@ -57,9 +57,7 @@ const Shelf = ({navigation, categoryID}) => {
                     <ActivityIndicator size="large" color="#00ff00"/>
                 </View>) : (
                 <View style={styles.container}>
-                    <Text>
-                        botga Aziz aka title quyishi kere
-                    </Text>
+
                     <View style={styles.listWrapper}>
                         <FlatList
                             keyExtractor={item => item._id}

@@ -67,9 +67,12 @@ const ProductInCheckout = ({item, setCount, count, setTypeCount, typeCount, setP
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginBottom: 10,
+        marginBottom: 5,
+        paddingBottom: 5,
         flexDirection: 'row',
         alignItems: 'center',
+        borderBottomWidth: 1,
+        borderColor: colors.borderGray,
     },
     imageWrapper: {},
     textWrapper: {

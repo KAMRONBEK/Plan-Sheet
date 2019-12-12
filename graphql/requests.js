@@ -25,11 +25,12 @@ export let GET_MAIN_CATEGORY = gql`
     }
 `;
 
-export let GET_SHOP_CATEGORY = gql`
+export let GET_SHOP_DATA = gql`
     query {
         verifyShop {
             _id
             admin_id
+            shop_image
             purchase_balance
             balance
             legal_name
@@ -114,6 +115,30 @@ export let GET_PRODUCT_DATA = gql`
             loves
             stars
         }
+    }
+`;
+
+export let GET_SHOP_PURCHASES = gql`
+    query
+    wrapper($pageSize:Int!,$next:Int!){
+        getMyShopTransactionDailyHistory(pageSize: $pageSize, next: $next) {
+            next
+            hasMore
+            shopTransactionDailyHistories {
+                _id {
+                    year
+                    month
+                    day
+                }
+                shopTransactions {
+                    _id
+                    info
+                    amount
+                    created_at
+                }
+            }
+        }
+
     }
 `;
 

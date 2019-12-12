@@ -10,17 +10,19 @@ const timelineItem = ({item}) => {
             {/*<View style={styles.shadow}/>*/}
             <View style={styles.container}>
                 <Text style={[styles.price, {
-                    color: item.income ? colors.green : colors.red,
+                    color: item.amount ? colors.green : colors.red,
                 }]}>
-                    {item.income ? '+' : '-'}{item.price} {strings.uzs}
+                    {item.amount ? '+' : '-'}{item.amount} {strings.uzs}
                 </Text>
                 <View style={{
                     flex: 1,
                     flexDirection: 'row',
                     justifyContent: 'space-between',
                 }}>
-                    <Text style={styles.text}>{item.title}</Text>
-                    <Text style={styles.text}>{item.time}</Text>
+                    <Text numberOfLines={2} ellipsizeMode='tail' style={[styles.text, {
+                        maxWidth: 150,
+                    }]}>{item.info}</Text>
+                    <Text style={styles.text}>{item.created_at}</Text>
                 </View>
             </View>
         </React.Fragment>
@@ -33,7 +35,7 @@ const styles = StyleSheet.create({
         padding: 10,
         marginBottom: 20,
         flexDirection: 'row',
-        marginHorizontal:2,
+        marginHorizontal: 2,
         backgroundColor: colors.white,
         // marginTop: -52,
         // elevation:1
@@ -47,7 +49,7 @@ const styles = StyleSheet.create({
         fontSize: 15,
     },
     shadow: {
-        marginTop:25,
+        marginTop: 25,
         backgroundColor: '#fafafa',
         borderRadius: 15,
         padding: 27,
