@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, TextInput,StyleSheet} from 'react-native';
+import {View, Text, TextInput, StyleSheet} from 'react-native';
 import colors from '../constants/colors';
 
 const DateInput = ({title}) => {
@@ -11,7 +11,7 @@ const DateInput = ({title}) => {
             </View>
             <View style={styles.inputWrapper}>
                 <TextInput
-                    onTextChange={(text) => setText(text)}
+                    onTextChange={(enteredText) => setText(enteredText)}
                     value={text}
                     placeholder=''
                     style={styles.input}
@@ -29,9 +29,7 @@ const DateInput = ({title}) => {
 };
 
 const styles = StyleSheet.create({
-    container: {
-
-    },
+    container: {},
     inputWrapper: {
         borderWidth: .5,
         borderRadius: 4,

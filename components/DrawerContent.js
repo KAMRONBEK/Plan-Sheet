@@ -51,33 +51,36 @@ let DrawerContent = ({navigation, dispatch}) => {
                 />
             </View>
             <ScrollView>
-                <DrawerMenuItem
-                    text={strings.homePage}
-                    iconName="home"
-                    onPress={() => navigate('Main', {})}
-                />
-                <DrawerMenuItem
-                    text={strings.category}
-                    iconName="list"
-                    onPress={() => navigate('Category', {})}
-                />
-                <DrawerMenuItem
-                    text={strings.history}
-                    iconName="history"
-                    onPress={() => navigate('History', {})}
-
-                />
-                <DrawerMenuItem
-                    text={strings.wallet}
-                    iconName="account-balance-wallet"
-                    onPress={() => navigate('Wallet', {})}
-
-                />
-                <DrawerMenuItem
-                    text={strings.activeOrders}
-                    iconName="local-shipping"
-                    onPress={() => navigate('Orders', {})}
-                />
+                    <DrawerMenuItem
+                        text={strings.homePage}
+                        iconName="home"
+                        to='Main'
+                        navigation={navigation}
+                    />
+                    <DrawerMenuItem
+                        text={strings.category}
+                        iconName="list"
+                        to='Category'
+                        navigation={navigation}
+                    />
+                    <DrawerMenuItem
+                        text={strings.history}
+                        iconName="history"
+                        to='History'
+                        navigation={navigation}
+                    />
+                    <DrawerMenuItem
+                        text={strings.wallet}
+                        iconName="account-balance-wallet"
+                        to='Wallet'
+                        navigation={navigation}
+                    />
+                    <DrawerMenuItem
+                        text={strings.activeOrders}
+                        iconName="local-shipping"
+                        to='Orders'
+                        navigation={navigation}
+                    />
             </ScrollView>
 
             <View style={{

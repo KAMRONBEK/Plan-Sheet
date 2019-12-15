@@ -5,13 +5,19 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import colors from '../constants/colors';
 import Touchable from './Touchable';
 
-const ProductInCheckout = ({item, setCount, count, setTypeCount, typeCount, setPrice, price, addItem}) => {
+const ProductInCheckout = ({item, setCount, count, setTypeCount, typeCount, setPrice, price, addItem, createOrderList, createdOrder}) => {
     let [selected, setSelected] = useState(0);
     let totalCount = count;
     let selectedType = typeCount;
     let totalPrice = price;
     useEffect(() => {
-    }, []);
+        if (!!item) {
+            createOrderList([...createdOrder, {_id: item._id, qty: selected + 1}]);
+        }
+        console.warn('here');
+        // console.warn(item);
+        console.warn(createdOrder);
+    }, [selected]);
     return (
         <View style={styles.container}>
             <View style={styles.imageWrapper}>

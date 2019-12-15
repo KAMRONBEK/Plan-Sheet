@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, LayoutAnimation} from 'react-native';
 import Touchable from './Touchable';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import colors from '../constants/colors';
@@ -13,6 +13,10 @@ const LevelTwoCategory = ({item, visibility, setThirdCategory}) => {
                     parentCategoryID: item._id,
                 },
             });
+
+            LayoutAnimation.configureNext(
+                LayoutAnimation.Presets.spring,
+            );
         }}>
             <View style={styles.container}>
                 <Text>{item.name}</Text>

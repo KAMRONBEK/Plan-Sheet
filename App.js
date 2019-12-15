@@ -20,13 +20,11 @@ import ApolloClient from 'apollo-boost';
 import {InMemoryCache} from 'apollo-cache-inmemory';
 
 
-
-
 const App: () => React$Node = () => {
 
     let [loading, setLoading] = useState(true);
     let [client, setClient] = useState(new ApolloClient({
-            uri: 'https://39990dea.ngrok.io/graphql',
+            uri: 'https://yuz1.herokuapp.com/graphql',
         }),
     );
 

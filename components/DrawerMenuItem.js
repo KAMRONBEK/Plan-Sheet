@@ -1,13 +1,16 @@
 import React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {Text, View, StyleSheet, ScrollView} from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import colors from '../constants/colors';
 import Touchable from './Touchable';
 
-const DrawerMenuItem = ({iconName, text, onPress}) => {
+const DrawerMenuItem = ({iconName, text, to, navigation}) => {
     // const { navigate } = navigation;
     return (
-        <Touchable onPress={onPress}>
+        <Touchable onPress={() => {
+            navigation.toggleDrawer();
+            navigation.navigate(to, {});
+        }}>
             <View style={styles.container}>
                 <MaterialIcons
                     name={iconName}

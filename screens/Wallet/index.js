@@ -12,41 +12,7 @@ import Touchable from '../../components/Touchable';
 
 import {GET_SHOP_DATA, GET_SHOP_PURCHASES} from '../../graphql/requests';
 import {useLazyQuery} from '@apollo/react-hooks';
-
-const usageList = [
-    {
-        id: 1,
-        price: 10000,
-        income: true,
-        title: 'hz',
-        time: '10:10',
-    },
-    {
-        id: 2,
-        price: 10000,
-        income: false,
-        title: 'hz',
-        time: '10:10',
-    },
-    {
-        id: 3,
-        price: 10000,
-        income: true,
-        title: 'hz',
-        time: '10:10',
-    },
-    {
-        id: 4,
-        price: 10000,
-        income: false,
-        title: 'hz',
-        time: '10:10',
-    },
-
-];
-
-
-
+import FollowInput from '../../components/FollowInput';
 
 const Wallet = ({navigation}) => {
     let [paymentVisibility, setPaymentVisibility] = useState(false);
@@ -69,7 +35,7 @@ const Wallet = ({navigation}) => {
         if (!!purchaseList) {
             setPurchaseHistoryList(purchaseList.getMyShopTransactionDailyHistory.shopTransactionDailyHistories);
         }
-    }, [data]);
+    }, [data, purchaseList]);
 
     if (!!data) {
         console.warn(shopData.shop_image);
@@ -77,7 +43,6 @@ const Wallet = ({navigation}) => {
     if (!!purchaseList) {
         console.warn(purchaseList.getMyShopTransactionDailyHistory.shopTransactionDailyHistories);
     }
-    let temp = paymentVisibility;
     return (
         <React.Fragment>
             {loading ? (

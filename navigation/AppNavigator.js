@@ -115,8 +115,8 @@ const topTabNavigator = createMaterialTopTabNavigator(
                 tabBarLabel: strings.main,
             },
         },
-        Shelf:{
-            screen:Shelf,
+        Shelf: {
+            screen: Shelf,
         },
         Category: {
             screen: Category,
@@ -150,6 +150,7 @@ const topTabNavigator = createMaterialTopTabNavigator(
         },
     },
     {
+        lazy: true,
         tabBarComponent: props => <Header {...props} />,
         // initialRouteName: 'History',
         swipeEnabled: false,

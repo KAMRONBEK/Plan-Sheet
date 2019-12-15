@@ -6,6 +6,7 @@ import CustomTextInput from '../../components/CustomTextInput';
 import DateInput from '../../components/DateInput';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Touchable from '../../components/Touchable';
+import FollowInput from '../../components/FollowInput';
 
 const Payment = ({modalOn}) => {
     return (
@@ -33,6 +34,19 @@ const Payment = ({modalOn}) => {
                 // alignItems: 'flex-end',
                 justifyContent: 'space-between',
             }}>
+                {/*<CustomTextInput*/}
+                {/*title={strings.enterCardNumber}*/}
+                {/*constants={strings.uzs}*/}
+                {/*// numOfInput={10}*/}
+                {/*/>*/}
+                {/*<View style={{*/}
+                {/*borderWidth: 1,*/}
+                {/*padding: 0,*/}
+                {/*borderColor: colors.borderGray,*/}
+                {/*justifyContent: 'center',*/}
+                {/*}}>*/}
+                {/*<FollowInput pattern={'#### #### #### ####'}/>*/}
+                {/*</View>*/}
                 <CustomTextInput
                     title={strings.enterCardNumber}
                     constants={strings.uzs}

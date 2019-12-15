@@ -75,21 +75,27 @@ let Main = ({navigation}) => {
                         />
                     </View>
                     {selectedItemId !== '' && modalVisibility &&
-                    <Modal isOpen={modalVisibility} navigation={navigation}>
+                    <Modal
+                        isOpen={modalVisibility}
+                        navigation={navigation}>
                         {/*<View style={{padding: 300, backgroundColor: colors.white}}>*/}
 
                         {/*</View>*/}
-                        <Checkout item={data.getProductBatchUnderCategory.products.find((product, index) => {
-                            if (product._id === selectedItemId) {
-                                console.warn('this is selected');
-                                console.warn(product);
-                                return product;
-                            }
-                        })}
-                                  navigation={navigation} modalOn={setModalVisibility}
+                        <Checkout
+                            item={data.getProductBatchUnderCategory.products.find((product, index) => {
+                                if (product._id === selectedItemId) {
+                                    console.warn('this is selected');
+                                    console.warn(product);
+                                    return product;
+                                }
+                            })}
+                            navigation={navigation}
+                            modalOn={setModalVisibility}
                         />
                     </Modal>}
-                    {successVisibility && <Modal isOpen={successVisibility} navigation={navigation}>
+                    {successVisibility && <Modal
+                        isOpen={successVisibility}
+                        navigation={navigation}>
                         <View style={{
                             padding: 80,
                             backgroundColor: colors.white,

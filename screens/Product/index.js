@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, StyleSheet, Image, ActivityIndicator} from 'react-native';
+import {View, Text, StyleSheet, Image, ActivityIndicator, LayoutAnimation} from 'react-native';
 import Header from '../../components/Header';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import colors from '../../constants/colors';
@@ -38,7 +38,6 @@ const Product = ({navigation}) => {
             setManufacturerData(data.getProductById.manufacturer_id);
         }
     }, [data]);
-
 
 
     const {navigate} = navigation;
@@ -142,9 +141,13 @@ const Product = ({navigation}) => {
                             <View style={styles.textArea}>
                                 <Text style={styles.description}>
                                     {!paragraphOn ? productData.short_desc : productData.long_desc}
+                                    {/*{!!productData && productData.long_desc.substr(0,180)}*/}
                                 </Text>
                                 <Touchable onPress={() => {
                                     setParagraphOn(!paragraphOn);
+                                    LayoutAnimation.configureNext(
+                                        LayoutAnimation.Presets.easeInEaseOut,
+                                    );
                                 }}>
                                     <Text style={styles.showMore}>
                                         {strings.showMore}

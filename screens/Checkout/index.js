@@ -19,6 +19,8 @@ const Checkout = ({navigation, item, modalOn}) => {
     let [totalCount, setTotalCount] = useState(0);
     let [totalPrice, setTotalPrice] = useState(0);
 
+    let [orderList, setOrderList] = useState([]);
+
     let [getProductData, {loading, data, error}] = useLazyQuery(GET_PRODUCT_DATA);
     useEffect(() => {
         if (!!item) {
@@ -33,6 +35,7 @@ const Checkout = ({navigation, item, modalOn}) => {
             console.warn(data);
             console.warn(data.getProductById);
             setStockList(data.getProductById.stock);
+            setOrderList(stockList);
         }
     }, [data]);
 
@@ -53,7 +56,7 @@ const Checkout = ({navigation, item, modalOn}) => {
                         completeOrder();
                         modalOn(false);
                     },
-                    style:'destructive'
+                    style: 'destructive',
                 },
             ],
             {cancelable: false},
@@ -94,7 +97,7 @@ const Checkout = ({navigation, item, modalOn}) => {
             </View>
             <View style={styles.content}>
                 <View>
-                    <Text style={styles.contentTitle}>
+                    <Text  style={styles.contentTitle}>
                         {strings.option}:
                     </Text>
                 </View>
@@ -121,6 +124,8 @@ const Checkout = ({navigation, item, modalOn}) => {
                                 typeCount={selectedType}
                                 setPrice={setTotalPrice}
                                 price={totalPrice}
+                                createOrderList={setOrderList}
+                                createdOrder={orderList}
                             />}
 
                         />)}
