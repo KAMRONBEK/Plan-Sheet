@@ -5,19 +5,37 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import colors from '../constants/colors';
 import Touchable from './Touchable';
 
-const ProductInCheckout = ({item, setCount, count, setTypeCount, typeCount, setPrice, price, addItem, createOrderList, createdOrder}) => {
+const ProductInCheckout = ({item, setCount, count, setTypeCount, typeCount, setPrice, price, addItem, createOrderList, createdOrder,copyOfOrderList}) => {
     let [selected, setSelected] = useState(0);
     let totalCount = count;
     let selectedType = typeCount;
     let totalPrice = price;
-    useEffect(() => {
+    let [stockList, setStockList] = useState([]);
+    let [currentItem, setCurrentItem] = useState({});
+    const changeQty = () => {
         if (!!item) {
-            createOrderList([...createdOrder, {_id: item._id, qty: selected + 1}]);
+            console.warn(item._id);
+            // setStockList([]);
+            console.warn(createdOrder);
+            !!copyOfOrderList && copyOfOrderList.map((stockItem, index) => {
+                if (stockItem._id !== item._id) {
+                    setStockList([...stockList, stockItem]);
+                } else if (stockItem._id === item._id) {
+                    console.warn(stockItem);
+                    setCurrentItem({...stockItem, qty: selected + 1});
+                    setStockList([...stockList, currentItem]);
+                    createOrderList(stockList);
+                }
+            });
+            // setStockList([{_id: item._id, title: item.title, qty: selected + 1}]);
         }
-        console.warn('here');
-        // console.warn(item);
+    };
+
+    useEffect(() => {
         console.warn(createdOrder);
-    }, [selected]);
+        console.warn('createdOrder');
+    }, [createdOrder]);
+
     return (
         <View style={styles.container}>
             <View style={styles.imageWrapper}>
@@ -42,6 +60,7 @@ const ProductInCheckout = ({item, setCount, count, setTypeCount, typeCount, setP
                         (count > 0 && selected > 0) ? setCount(totalCount - 1) : setCount(count);
                         (selected > 0) ? setSelected(selected - 1) : setSelected(0);
                         (selected > 0) ? setPrice(totalPrice - item.price) : setPrice(totalPrice);
+                        changeQty();
                     }}>
                         <View style={styles.minus}>
                             <MaterialIcons name='remove' size={20} style={{
@@ -57,6 +76,7 @@ const ProductInCheckout = ({item, setCount, count, setTypeCount, typeCount, setP
                         setCount(totalCount + 1);
                         setPrice(totalPrice + item.price);
                         (selected === 0) ? setTypeCount(typeCount + 1) : setTypeCount(typeCount);
+                        changeQty();
                     }}>
                         <View style={styles.plus}>
                             <MaterialIcons name='add' size={20} style={{

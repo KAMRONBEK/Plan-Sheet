@@ -13,14 +13,11 @@ import {GET_PRODUCT_DATA} from '../../graphql/requests';
 
 
 const Checkout = ({navigation, item, modalOn}) => {
-
     let [stockList, setStockList] = useState([]);
     let [selectedType, setSelectedType] = useState(0);
     let [totalCount, setTotalCount] = useState(0);
     let [totalPrice, setTotalPrice] = useState(0);
-
     let [orderList, setOrderList] = useState([]);
-
     let [getProductData, {loading, data, error}] = useLazyQuery(GET_PRODUCT_DATA);
     useEffect(() => {
         if (!!item) {
@@ -35,7 +32,7 @@ const Checkout = ({navigation, item, modalOn}) => {
             console.warn(data);
             console.warn(data.getProductById);
             setStockList(data.getProductById.stock);
-            setOrderList(stockList);
+            setOrderList(data.getProductById.stock);
         }
     }, [data]);
 
@@ -97,7 +94,7 @@ const Checkout = ({navigation, item, modalOn}) => {
             </View>
             <View style={styles.content}>
                 <View>
-                    <Text  style={styles.contentTitle}>
+                    <Text style={styles.contentTitle}>
                         {strings.option}:
                     </Text>
                 </View>
@@ -126,6 +123,7 @@ const Checkout = ({navigation, item, modalOn}) => {
                                 price={totalPrice}
                                 createOrderList={setOrderList}
                                 createdOrder={orderList}
+                                copyOfOrderList={stockList}
                             />}
 
                         />)}
