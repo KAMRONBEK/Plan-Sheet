@@ -42,13 +42,17 @@ let Main = ({navigation}) => {
     useEffect(() => {
         loadCategoryID();
         if (!!dataCategory) {
-            loadProducts({
-                variables: {
-                    category_id: dataCategory.verifyShop.category_id,
-                    pageSize: 10,
-                    next: 1,
-                },
-            });
+            if (dataCategory.verifyShop.category_id) {
+                loadProducts({
+                    variables: {
+                        category_id: dataCategory.verifyShop.category_id,
+                        pageSize: 10,
+                        next: 1,
+                    },
+                });
+            }
+        } else {
+            console.warn('no category selected');
         }
     }, [dataCategory]);
 
@@ -63,6 +67,7 @@ let Main = ({navigation}) => {
                     <ActivityIndicator size="large" color="#00ff00"/>
                 </View>) : (
                 <View style={styles.container}>
+
                     <View style={styles.listWrapper}>
                         <FlatList
                             keyExtractor={item => item._id}

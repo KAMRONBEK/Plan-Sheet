@@ -19,6 +19,8 @@ const Checkout = ({navigation, item, modalOn}) => {
     let [totalPrice, setTotalPrice] = useState(0);
     let [orderList, setOrderList] = useState([]);
     let [getProductData, {loading, data, error}] = useLazyQuery(GET_PRODUCT_DATA);
+
+
     useEffect(() => {
         if (!!item) {
             getProductData({
@@ -27,14 +29,15 @@ const Checkout = ({navigation, item, modalOn}) => {
                 },
             });
         }
-        if (data) {
+        if (!!data) {
             console.warn('getProductById');
-            console.warn(data);
             console.warn(data.getProductById);
             setStockList(data.getProductById.stock);
             setOrderList(data.getProductById.stock);
         }
     }, [data]);
+
+
 
     const alerter = () => {
         Alert.alert(
