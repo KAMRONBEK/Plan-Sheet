@@ -24,16 +24,16 @@ const ProductCardHistory = ({item}) => {
             </View>
             <View style={styles.content}>
                 <View style={styles.nameWrapper}>
-                    <Text>{item.name}</Text>
+                    <Text>{!!item.product && item.product.name}</Text>
                 </View>
-                <Text>{item.orderAmount} x {item.oldPrice} {item.priceUnit}</Text>
+                <Text>{item.totalQty} x {item.totalPrice / item.totalQty} {item.priceUnit}</Text>
                 <View style={styles.priceWrapper}>
                     <MaterialIcons
                         name={(item.price > item.oldPrice) ? 'arrow-drop-up' : 'arrow-drop-down'}
                         size={35}
                         color={(item.price > item.oldPrice) ? colors.green : colors.red}
                     />
-                    <Text style={styles.price}>{item.price} {item.priceUnit}</Text>
+                    <Text style={styles.price}>{item.totalPrice} {item.priceUnit}</Text>
                 </View>
                 <Touchable onPress={() => {
 

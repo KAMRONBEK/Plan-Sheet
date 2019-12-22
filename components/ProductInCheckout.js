@@ -24,17 +24,21 @@ const ProductInCheckout = ({item, setCount, count, setTypeCount, typeCount, setP
             !!createdOrder && createdOrder.map((stockItem, index) => {
                 if (stockItem._id !== item._id) {
                     setStockList([...stockList, stockItem]);
-                    // setOrderList([...orderList, {...listItem, qty: 0}]);
                 } else if (stockItem._id === item._id) {
-                    console.warn(stockItem);
                     setCurrentItem({...stockItem, qty: selected + 1});
                     setStockList([...stockList, currentItem]);
                 }
                 console.warn(stockList);
             });
+            createOrderList(stockList);
             // setStockList([{_id: item._id, title: item.title, qty: selected + 1}]);
         }
     };
+
+    useEffect(() => {
+        console.warn(createdOrder);
+        console.warn('order');
+    }, [stockList]);
 
     return (
         <View style={styles.container}>

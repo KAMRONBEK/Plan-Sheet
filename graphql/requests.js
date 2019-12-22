@@ -97,6 +97,7 @@ export let GET_PRODUCT_DATA = gql`
                 image
                 count
                 sold
+                qty
             }
             count_measurement
             min_order
@@ -140,6 +141,26 @@ export let GET_SHOP_PURCHASES = gql`
         }
 
     }
+`;
+
+export let GET_SHOP_ORDER_HISTORY = gql`
+    query
+    wrapper($pageSize:Int!,$next:Int!){
+        getShopOrderHistory(pageSize:$pageSize,next:$next){
+            next
+            hasMore
+            orders{
+                _id
+                product{
+                    product_id
+                    name
+                    count_measurement
+                }
+                totalPrice
+                totalQty
+            }
+        }}
+
 `;
 
 

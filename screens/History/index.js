@@ -1,9 +1,12 @@
-import React, {useState,useCallback} from 'react';
+import React, {useState, useCallback, useEffect} from 'react';
 import {View, Text, FlatList, ScrollView, StyleSheet, RefreshControl} from 'react-native';
 import ProductCardHistory from '../../components/ProductCardHistory';
 import Header from '../../components/Header';
 import Modal from '../../components/Modal';
 import colors from '../../constants/colors';
+
+import {useQuery, useLazyQuery} from '@apollo/react-hooks';
+import {GET_SHOP_ORDER_HISTORY} from '../../graphql/requests';
 
 const History = ({navigation}) => {
     const ProductList = [
@@ -169,6 +172,20 @@ const History = ({navigation}) => {
         },
     ];
 
+    let [historyList, setHistoryList] = useState([]);
+    let {loading, data, error} = useQuery(GET_SHOP_ORDER_HISTORY, {
+        variables: {
+            next: 1, pageSize: 10,
+        },
+    });
+
+    useEffect(() => {
+        if (!!data) {
+            setHistoryList(data.getShopOrderHistory.orders);
+        }
+        console.warn(historyList);
+    }, [data]);
+
     const [refreshing, setRefreshing] = useState(false);
 
     const wait = (timeout) => {
@@ -189,8 +206,8 @@ const History = ({navigation}) => {
         }>
             <View style={styles.listWrapper}>
                 <FlatList
-                    keyExtractor={item => item.id.toString()}
-                    data={ProductList}
+                    keyExtractor={item => item._id}
+                    data={historyList}
                     renderItem={({item}) => <ProductCardHistory item={item}/>}
                 />
             </View>
