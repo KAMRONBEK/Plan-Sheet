@@ -40,8 +40,41 @@ const App: () => React$Node = () => {
           },
           typeDefs,
         }),
-      );
-      console.log(token);
+    );
+
+    let init = async () => {
+        let token = await AsyncStorage.getItem('token');
+        if (!!token) {
+            store.dispatch(userLoaded(token));
+            console.warn(store);
+            setClient(new ApolloClient({
+                // uri: 'https://39990dea.ngrok.io/graphql',
+                uri: 'https://yuz1.herokuapp.com/graphql',
+                request: (operation) => {
+                    operation.setContext({
+                        headers: {
+                            authorization: token ? token : '',
+                        },
+                    });
+                },
+            }));
+            console.log(token);
+        }
+        setLoading(false);``
+    };
+    useEffect(init, []);
+
+    // strings.setLanguage('eng');
+
+    if (loading) {
+        // return <View style={{flex: 1, backgroundColor: 'red'}}/>;
+        return <View style={{
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+        }}>
+            <ActivityIndicator size="large" color="#00ff00"/>
+        </View>;
     }
     setLoading(false);
   };
