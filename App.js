@@ -46,12 +46,12 @@ const App: () => React$Node = () => {
             }));
             console.log(token);
         }
-        setLoading(false);
+        setLoading(false);``
     };
     useEffect(init, []);
 
+    // strings.setLanguage('eng');
 
-    strings.setContent('uz');
     if (loading) {
         // return <View style={{flex: 1, backgroundColor: 'red'}}/>;
         return <View style={{

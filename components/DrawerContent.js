@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Image, Text, StyleSheet, ScrollView} from 'react-native';
 import DrawerMenuItem from '../components/DrawerMenuItem';
 import colors from '../constants/colors';
@@ -7,10 +7,21 @@ import {connect} from 'react-redux';
 import Touchable from './Touchable';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {userLogout} from '../actions/userActions';
+import LanguageItem from './LanguageItem';
 
 let DrawerContent = ({navigation, dispatch}) => {
     const {navigate} = navigation;
 
+    //language
+    let [uzOn, setUzOn] = useState(true);
+    let [ruOn, setRuOn] = useState(false);
+    let [engOn, setEngOn] = useState(false);
+
+    useEffect(
+        () => {
+            console.warn('language changed');
+        }, [uzOn, ruOn, engOn],
+    );
 
     return (
         <View style={styles.container}>
@@ -51,38 +62,69 @@ let DrawerContent = ({navigation, dispatch}) => {
                 />
             </View>
             <ScrollView>
-                    <DrawerMenuItem
-                        text={strings.homePage}
-                        iconName="home"
-                        to='Main'
-                        navigation={navigation}
-                    />
-                    <DrawerMenuItem
-                        text={strings.category}
-                        iconName="list"
-                        to='Category'
-                        navigation={navigation}
-                    />
-                    <DrawerMenuItem
-                        text={strings.history}
-                        iconName="history"
-                        to='History'
-                        navigation={navigation}
-                    />
-                    <DrawerMenuItem
-                        text={strings.wallet}
-                        iconName="account-balance-wallet"
-                        to='Wallet'
-                        navigation={navigation}
-                    />
-                    <DrawerMenuItem
-                        text={strings.activeOrders}
-                        iconName="local-shipping"
-                        to='Orders'
-                        navigation={navigation}
-                    />
+                <DrawerMenuItem
+                    text={strings.homePage}
+                    iconName="home"
+                    to='Main'
+                    navigation={navigation}
+                />
+                <DrawerMenuItem
+                    text={strings.category}
+                    iconName="list"
+                    to='Category'
+                    navigation={navigation}
+                />
+                <DrawerMenuItem
+                    text={strings.history}
+                    iconName="history"
+                    to='History'
+                    navigation={navigation}
+                />
+                <DrawerMenuItem
+                    text={strings.wallet}
+                    iconName="account-balance-wallet"
+                    to='Wallet'
+                    navigation={navigation}
+                />
+                <DrawerMenuItem
+                    text={strings.activeOrders}
+                    iconName="local-shipping"
+                    to='Orders'
+                    navigation={navigation}
+                />
             </ScrollView>
-
+            <View style={styles.lanWrapper}>
+                <Touchable>
+                    <LanguageItem text='uz' isActive={uzOn} onPress={() => {
+                        strings.setLanguage('uz');
+                        setUzOn(true);
+                        setRuOn(false);
+                        setEngOn(false);
+                        navigation.toggleDrawer();
+                        navigate('Main', {});
+                    }}/>
+                </Touchable>
+                <Touchable>
+                    <LanguageItem text='ru' isActive={ruOn} onPress={() => {
+                        strings.setLanguage('ru');
+                        setUzOn(false);
+                        setRuOn(true);
+                        setEngOn(false);
+                        navigation.toggleDrawer();
+                        navigate('Main', {});
+                    }}/>
+                </Touchable>
+                <Touchable>
+                    <LanguageItem text='eng' isActive={engOn} onPress={() => {
+                        strings.setLanguage('eng');
+                        setUzOn(false);
+                        setRuOn(false);
+                        setEngOn(true);
+                        navigation.toggleDrawer();
+                        navigate('Main', {});
+                    }}/>
+                </Touchable>
+            </View>
             <View style={{
                 alignItems: 'center',
             }}>
@@ -137,6 +179,12 @@ const styles = StyleSheet.create({
         paddingHorizontal: 40,
         overflow: 'hidden',
     },
+    lanWrapper: {
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        marginBottom: 40,
+    },
+
 });
 
 export default connect(null)(DrawerContent);

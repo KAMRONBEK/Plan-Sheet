@@ -48,7 +48,7 @@ export default new LocalizedStrings({
         sendConfirmationNumber: 'Tasdiqlash kodini yuborish',
         cash: 'Naxt',
         credit: 'Kredit kartasi',
-        cancel:'Bekor qilish'
+        cancel: 'Bekor qilish',
     },
     ru: {
         main: 'Главный',
@@ -97,9 +97,9 @@ export default new LocalizedStrings({
         sendConfirmationNumber: 'Отправить номер подтверждения',
         cash: 'Наличные',
         credit: 'Кредитная карта',
-        cancel:'Отмена'
+        cancel: 'Отмена',
     },
-    angliskiy: {
+    eng: {
         main: 'Main',
         category: 'Category',
         history: 'History',
@@ -146,6 +146,6 @@ export default new LocalizedStrings({
         sendConfirmationNumber: 'Send confirmation number',
         cash: 'Cash',
         credit: 'Credit card',
-        cancel:'Cancel'
+        cancel: 'Cancel',
     },
 });
