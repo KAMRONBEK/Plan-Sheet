@@ -170,25 +170,25 @@ export let ADD_TO_ORDER = gql`
     }
   }
 `;
-    query
-    wrapper($pageSize:Int!,$next:Int!){
-        getShopOrderHistory(pageSize:$pageSize,next:$next){
-            next
-            hasMore
-            orders{
-                _id
-                product{
-                    product_id
-                    name
-                    count_measurement
-                }
-                totalPrice
-                totalQty
-                status
-            }
-        }}
-
-`;
+//     query
+//     wrapper($pageSize:Int!,$next:Int!){
+//         getShopOrderHistory(pageSize:$pageSize,next:$next){
+//             next
+//             hasMore
+//             orders{
+//                 _id
+//                 product{
+//                     product_id
+//                     name
+//                     count_measurement
+//                 }
+//                 totalPrice
+//                 totalQty
+//                 status
+//             }
+//         }}
+//
+// `;
 
 export let GET_SHOP_ACTIVE_ORDER = gql`
 query

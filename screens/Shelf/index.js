@@ -81,7 +81,8 @@ const Shelf = ({navigation, categoryID}) => {
                                 return product;
                             }
                         })}
-                                  navigation={navigation} modalOn={setModalVisibility}
+                                  navigation={navigation}
+                                  modalOn={setModalVisibility}
                                   alertOn={setAlertVisibility}/>
                     </Modal>}
                     {

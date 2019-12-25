@@ -8,7 +8,7 @@ import CircleButton from './CircleButton';
 import FilledButton from './FilledButton';
 import Touchable from './Touchable';
 
-const ProductCardHistory = ({item}) => {
+const ProductCardHistory = ({item, modalOn, setItem}) => {
     return (
         <View style={styles.container}>
             <View style={styles.imageWrapper}>
@@ -36,7 +36,10 @@ const ProductCardHistory = ({item}) => {
                     <Text style={styles.price}>{item.totalPrice} {item.priceUnit}</Text>
                 </View>
                 <Touchable onPress={() => {
-
+                    console.warn('modal on');
+                    console.warn(item);
+                    modalOn(true);
+                    setItem(item.product.product_id);
                 }}>
                     <View>
                         <FilledButton text={strings.ordering}/>
