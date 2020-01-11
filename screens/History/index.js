@@ -28,7 +28,7 @@ const History = ({navigation}) => {
     const wait = (timeout) => {
         return new Promise(resolve => {
             setTimeout(resolve, timeout);
-        });
+        }); 
     };
 
     const onRefresh = useCallback(() => {
